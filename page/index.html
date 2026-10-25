@@ -1,0 +1,617 @@
+<style>
+  /* Look borrowed from easyui: ringed cards, tight big numbers, tinted pills, sparklines. */
+  .ct {
+    --ct-ring: color-mix(in srgb, var(--color-fg) 9%, transparent);
+    --ct-ring-hover: color-mix(in srgb, var(--color-fg) 16%, transparent);
+    --ct-wash: color-mix(in srgb, var(--color-fg) 5%, transparent);
+    --ct-shadow: 0 0 0 1px var(--ct-ring), 0 1px 2px rgb(0 0 0 / .04), 0 18px 36px -28px rgb(0 0 0 / .22);
+    --ct-r: 16px;
+    display: grid; gap: 28px; font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; letter-spacing: -0.011em;
+    max-width: 72rem; margin-inline: auto;
+  }
+  .ct h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.035em; margin: 0; }
+  .ct h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .ct h3 { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .ct-muted, .ct-note { color: var(--color-fg-muted); font-size: 12.5px; margin: 0; line-height: 1.5; }
+  .ct-top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
+  .ct-take { margin: 6px 0 0; color: var(--color-fg-muted); font-size: 14px; max-width: 62ch; line-height: 1.5; }
+
+  .ct-tabs { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--ct-wash); }
+  .ct-tabs button { font: inherit; font-size: 13px; border: 0; background: none; color: var(--color-fg-muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .ct-tabs button[aria-selected="true"] { background: var(--color-panel); color: var(--color-fg); box-shadow: 0 0 0 1px var(--ct-ring), 0 1px 2px rgb(0 0 0 / .06); }
+  .ct-tabs button:focus-visible, .ct select:focus-visible, .ct tr.run:focus-visible { outline: 2px solid var(--ct-ring-hover); outline-offset: 2px; }
+
+  .ct-page { display: grid; gap: 28px; }
+  .ct-page[hidden] { display: none; }
+  .ct-block { display: grid; gap: 12px; }
+  .ct-block > header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+
+  .ct-card { background: var(--color-panel); border-radius: var(--ct-r); box-shadow: var(--ct-shadow); padding: 18px; min-width: 0; display: grid; gap: 10px; align-content: start; transition: box-shadow .2s; }
+  @media (hover: hover) { .ct-stat:hover { box-shadow: 0 0 0 1px var(--ct-ring-hover), 0 1px 2px rgb(0 0 0 / .04), 0 18px 36px -28px rgb(0 0 0 / .22); } }
+  .ct-row { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); }
+  .ct-wide { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+
+  .ct-stat { padding: 16px 0 0; gap: 0; overflow: hidden; }
+  .ct-stat .head { display: flex; justify-content: space-between; align-items: start; gap: 8px; padding: 0 16px; }
+  .ct-stat .lbl { font-size: 12.5px; color: var(--color-fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ct-num { font-size: 28px; font-weight: 600; line-height: 1; letter-spacing: -0.035em; margin: 8px 0 0; padding: 0 16px; }
+  .ct-num small { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--color-fg-muted); margin-left: 3px; }
+  .ct-stat .sub { font-size: 12px; color: var(--color-fg-muted); margin: 6px 0 0; padding: 0 16px; }
+  .ct-spark { height: 52px; margin-top: 12px; position: relative; }
+  .ct-spark svg { display: block; overflow: visible; }
+  .ct-pulse { transform-box: fill-box; transform-origin: center; opacity: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .ct-pulse { animation: ct-pulse 1.8s var(--cds-ease-out) infinite; }
+    @keyframes ct-pulse { from { transform: scale(1); opacity: .4; } to { transform: scale(2.8); opacity: 0; } }
+  }
+
+  .ct-pill { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 999px; background: var(--ct-wash); color: var(--color-fg-muted); white-space: nowrap; }
+  .ct-pill[data-tone="ok"] { background: color-mix(in srgb, var(--color-ok) 12%, transparent); color: var(--color-ok); }
+  .ct-pill[data-tone="warn"] { background: color-mix(in srgb, var(--color-warn) 14%, transparent); color: var(--color-warn); }
+  .ct-pill[data-tone="bad"] { background: color-mix(in srgb, var(--color-bad) 12%, transparent); color: var(--color-bad); }
+  .ct-pill svg { width: 8px; height: 8px; }
+
+  .ct-hero { grid-column: span 2; padding: 18px; gap: 8px; }
+  @media (max-width: 34rem) { .ct-hero { grid-column: auto; } }
+  .ct-hero .state { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.035em; }
+  .ct-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cds-chart-muted); flex-shrink: 0; }
+  .ct-hero[data-state="ready"] .ct-dot { background: var(--color-ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-ok) 18%, transparent); }
+  .ct-hero[data-state="easy"] .ct-dot { background: var(--color-warn); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-warn) 18%, transparent); }
+  .ct-hero .note { font-size: 13px; color: var(--color-fg-muted); margin: 0; line-height: 1.5; }
+  .ct-hero .foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+  .ct-list { display: grid; }
+  .ct-list > div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--ct-ring); font-size: 13px; }
+  .ct-list > div:first-child { border-top: 0; }
+  .ct-list dt { color: var(--color-fg-muted); }
+  .ct-list dd { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
+
+  .ct-wo { gap: 8px; }
+  .ct-wo .day { font-size: 12px; color: var(--color-fg-muted); }
+  .ct-wo p { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-fg-muted); }
+  .ct-wo .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ct-wo .swap { color: var(--color-warn); }
+
+  .ct-chart { position: relative; min-height: 220px; }
+  .ct-tip { position: absolute; z-index: 1; pointer-events: none; background: var(--cds-surface-popover); border-radius: 10px; box-shadow: 0 0 0 1px var(--ct-ring), 0 10px 25px -8px rgb(0 0 0 / .18); padding: 6px 10px; font-size: 12px; white-space: nowrap; }
+  .ct-tip .when { color: var(--cds-text-secondary); margin-bottom: 2px; }
+  .ct-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--color-fg-muted); }
+  .ct-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+  .ct-report { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+  .ct-report ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 13px; line-height: 1.55; }
+  .ct-report li { padding-left: 16px; position: relative; }
+  .ct-report li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--ct-dot-c, var(--cds-chart-muted)); }
+  .ct-report .good { --ct-dot-c: var(--color-ok); }
+  .ct-report .bad { --ct-dot-c: var(--color-bad); }
+  .ct-report .advice { --ct-dot-c: var(--color-fg); }
+  .ct-summary { margin: 0; font-size: 14px; line-height: 1.6; max-width: 70ch; }
+  .ct select { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 999px; border: 0; background: var(--ct-wash); color: var(--color-fg); }
+
+  .ct-table { overflow-x: auto; padding: 6px 6px; }
+  .ct table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ct th, .ct td { text-align: left; padding: 10px 12px; white-space: nowrap; }
+  .ct th { font-size: 12px; font-weight: 500; color: var(--color-fg-muted); }
+  .ct td { border-top: 1px solid var(--ct-ring); }
+  .ct td.n, .ct th.n { text-align: right; }
+  .ct tr.run { cursor: pointer; }
+  .ct tr.run td:first-child::after { content: " ›"; color: var(--color-fg-muted); }
+  @media (hover: hover) { .ct tr.run:hover td { background: var(--ct-wash); } }
+  .ct tr.picked td { background: var(--ct-wash); }
+  .ct-laps[hidden] { display: none; }
+
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .ct-fail { display: flex; align-items: center; justify-content: center; gap: .5em; min-height: inherit; color: var(--color-fg-muted); font-size: 12px; }
+  .ct-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+</style>
+
+<div class="ct">
+  <div class="ct-top">
+    <div>
+      <h1 id="top">COROS Training</h1>
+      <p class="ct-take dash-skeleton" data-source="daily workouts weeks">—</p>
+    </div>
+    <div class="ct-tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button role="tab" id="tab-training" aria-controls="training" aria-selected="false">Training</button>
+      <button role="tab" id="tab-reports" aria-controls="reports" aria-selected="false">Reports</button>
+      <button role="tab" id="tab-activities" aria-controls="activities" aria-selected="false">Activities</button>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <section class="ct-page" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="ct-block" id="today">
+      <header><h2>Today</h2><p class="ct-muted">Changes are against your previous 7 days</p></header>
+      <div class="ct-row">
+        <div class="ct-card ct-hero" id="readiness">
+          <span class="ct-muted">Ready to train hard?</span>
+          <div class="state"><span class="ct-dot"></span><span id="ready-word" class="dash-skeleton">—</span></div>
+          <p class="note" data-source="daily" data-field="readiness_note">—</p>
+          <div class="foot">
+            <span class="ct-pill">COROS recovery <span data-source="daily" data-field="recovery_pct" id="rec-val">—</span>%</span>
+          </div>
+        </div>
+        <div class="ct-card ct-stat" id="s-hrv" data-metric="hrv" data-good="up"><div class="head"><span class="lbl">Sleep HRV</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=hrv"></span></div><p class="ct-num"><span data-source="daily" data-field="hrv">—</span><small>ms</small></p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-rhr" data-metric="rhr" data-good="down"><div class="head"><span class="lbl">Resting heart rate</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=rhr"></span></div><p class="ct-num"><span data-source="daily" data-field="rhr">—</span><small>bpm</small></p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-sleep" data-metric="sleep_min" data-show="sleep" data-good="up"><div class="head"><span class="lbl">Sleep</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=sleep_min"></span></div><p class="ct-num" data-source="daily" data-field="sleep">—</p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-stress" data-metric="stress" data-good="down"><div class="head"><span class="lbl">Stress, daily average</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=stress"></span></div><p class="ct-num" data-source="daily" data-field="stress">—</p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-steps" data-metric="steps" data-good="up"><div class="head"><span class="lbl">Steps</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=steps"></span></div><p class="ct-num" data-source="daily" data-field="steps">—</p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+      </div>
+    </div>
+
+    <div class="ct-block" id="workouts">
+      <header><h2>This week's runs</h2><p class="ct-muted">Drafts stay off your watch until you tell Claude "push them"</p></header>
+      <div class="ct-row dash-skeleton" id="wo-list" data-source="workouts"></div>
+    </div>
+
+    <div class="ct-block" id="goals">
+      <header><h2>Fitness</h2><p class="ct-muted">Baseline weeks 1 to 3. A VO2max target is proposed after week 3.</p></header>
+      <div class="ct-row">
+        <div class="ct-card ct-stat" id="s-vo2" data-metric="vo2max" data-good="up"><div class="head"><span class="lbl">VO2max</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=vo2max"></span></div><p class="ct-num" data-source="daily" data-field="vo2max">—</p><p class="sub">Running level <span data-source="daily" data-field="running_level" id="level-val">—</span></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-thr" data-metric="threshold_pace_s" data-show="threshold_pace" data-good="down"><div class="head"><span class="lbl">Threshold pace</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=threshold_pace_s"></span></div><p class="ct-num"><span data-source="daily" data-field="threshold_pace">—</span><small>/km</small></p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card" id="predictions">
+          <h3>Race predictions</h3>
+          <dl class="ct-list">
+            <div><dt>5K</dt><dd data-source="daily" data-field="pred_5k">—</dd></div>
+            <div><dt>10K</dt><dd data-source="daily" data-field="pred_10k">—</dd></div>
+            <div><dt>Half marathon</dt><dd data-source="daily" data-field="pred_half">—</dd></div>
+            <div><dt>Marathon</dt><dd data-source="daily" data-field="pred_full">—</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training -->
+  <section class="ct-page" id="training" role="tabpanel" aria-labelledby="tab-training" hidden>
+    <div class="ct-block" id="endurance">
+      <header><h2>Endurance</h2><p class="ct-muted">The two numbers that show your aerobic base growing</p></header>
+      <div class="ct-wide">
+        <div class="ct-card" id="drift-card">
+          <h3>Heart-rate drift per run</h3>
+          <p class="ct-note">How much your heart rate rose for the same pace from the first half of a run to the second. Under 5% means a solid aerobic base.</p>
+          <div class="ct-chart" id="drift-chart" data-source="activities"></div>
+        </div>
+        <div class="ct-card" id="easy-card">
+          <h3>Pace at easy heart rate</h3>
+          <p class="ct-note">Average pace of the kilometres you ran in zone 2 or below, and your longest run that stayed easy.</p>
+          <p class="ct-note" id="zones-missing" hidden>Needs your heart-rate zones. Ask Claude to set them from the COROS app.</p>
+          <div class="ct-table">
+            <table data-source="weeks" data-row-key="week" id="easy-table">
+              <thead><tr><th data-field="week">Week of</th><th class="n" data-field="easy_pace">Easy pace /km</th><th class="n" data-field="longest_easy_min">Longest easy run, min</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct-block" id="load">
+      <header><h2>Training load</h2><p class="ct-muted">Runs, walks and strength all count</p></header>
+      <div class="ct-row">
+        <div class="ct-card ct-stat" id="s-load" data-metric="load_7d" data-good="none"><div class="head"><span class="lbl">Load, last 7 days</span></div><p class="ct-num" data-source="daily" data-field="load_7d">—</p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
+        <div class="ct-card ct-stat" id="s-ratio"><div class="head"><span class="lbl">Load ratio, 7 vs 28 days</span></div><p class="ct-num" data-source="daily" data-field="load_ratio">—</p><p class="sub" data-fixed="1">Shown after 4 weeks of data. 0.8 to 1.3 is a safe range.</p><div class="ct-spark"></div></div>
+      </div>
+      <div class="ct-wide">
+        <div class="ct-card" id="km-card">
+          <h3>Running distance per week</h3>
+          <p class="ct-note">Kilometres run, Monday to Sunday</p>
+          <div class="ct-chart" id="km-chart" data-source="weeks"></div>
+        </div>
+        <div class="ct-card" id="zone-card">
+          <h3>Time in heart-rate zones</h3>
+          <p class="ct-note">Minutes of running per zone, from 1 km splits. Most should sit in zones 1 and 2.</p>
+          <div class="ct-legend" id="zone-legend"></div>
+          <div class="ct-chart" id="zone-chart" data-source="weeks"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reports -->
+  <section class="ct-page" id="reports" role="tabpanel" aria-labelledby="tab-reports" hidden>
+    <div class="ct-block">
+      <header><h2>Weekly report</h2><select id="report-week" aria-label="Week"></select></header>
+      <div class="ct-card" id="report" data-source="weeks">
+        <p class="ct-summary" id="report-summary"></p>
+      </div>
+      <div class="ct-report">
+        <div class="ct-card"><h3>Went well</h3><ul class="good" id="report-good"></ul></div>
+        <div class="ct-card"><h3>Needs work</h3><ul class="bad" id="report-bad"></ul></div>
+        <div class="ct-card"><h3>What to do next</h3><ul class="advice" id="report-advice"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities -->
+  <section class="ct-page" id="activities" role="tabpanel" aria-labelledby="tab-activities" hidden>
+    <div class="ct-block">
+      <header><h2>Recent activities</h2><p class="ct-muted">Select a run to see its 1 km splits</p></header>
+      <div class="ct-card ct-table">
+        <table data-source="activities" data-row-key="id" id="act-table">
+          <thead><tr>
+            <th data-field="date">Date</th><th data-field="name">Activity</th><th class="n" data-field="km">km</th>
+            <th class="n" data-field="time">Time</th><th class="n" data-field="pace">Pace /km</th><th class="n" data-field="avg_hr">Avg HR</th>
+            <th class="n" data-field="load">Load</th><th class="n" data-field="drift_pct">Drift %</th><th data-field="grade">Workout grade</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="ct-card ct-table ct-laps" id="laps" hidden>
+        <h3 id="laps-title" style="padding: 8px 12px 0">Splits</h3>
+        <table data-source="laps" data-row-key="id,lap" id="lap-table">
+          <thead><tr><th data-field="lap">km</th><th class="n" data-field="km">Distance</th><th class="n" data-field="pace">Pace /km</th><th class="n" data-field="avg_hr">Avg HR</th><th class="n" data-field="zone">Zone</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  dash.calc('changes', {
+    inputs: ['daily'],
+    title: 'Change vs previous 7 days',
+    description: 'Latest value of each daily measure minus the average of the 7 days before it.',
+    fn: (daily) => ['hrv', 'rhr', 'sleep_min', 'stress', 'steps', 'vo2max', 'threshold_pace_s'].map((metric) => {
+      let i = daily.length - 1;
+      while (i >= 0 && daily[i][metric] == null) i--;
+      if (i < 0) return { metric, date: null, latest: null, avg7: null, change: null };
+      const prior = daily.slice(Math.max(0, i - 7), i).map((r) => r[metric]).filter((v) => v != null);
+      const avg7 = prior.length ? prior.reduce((a, b) => a + b, 0) / prior.length : null;
+      return { metric, date: daily[i].date, latest: daily[i][metric], avg7: avg7 == null ? null : Math.round(avg7 * 10) / 10,
+        change: avg7 == null ? null : Math.round((daily[i][metric] - avg7) * 10) / 10 };
+    }),
+  });
+</script>
+
+<script>
+  const day = d3.utcFormat('%a %b %-d');
+  const short = d3.utcFormat('%b %-d');
+  const asDate = (s) => new Date(s + 'T00:00:00Z');
+  const rowsOf = (id) => { const r = dash.data(id); return r.status === 'ok' ? r.data : null; };
+  const failed = (id) => dash.data(id).status === 'error';
+  const fail = (el) => { el.replaceChildren(); const f = document.createElement('div'); f.className = 'ct-fail'; f.textContent = 'Failed to load'; el.append(f); };
+  const READY = { ready: 'Yes, you look recovered', easy: 'Keep today easy', baseline: 'Building your baseline', unknown: 'Waiting for last night\'s sleep' };
+  const CHANGE_FMT = { sleep_min: (v) => `${Math.floor(v / 60) ? Math.floor(v / 60) + 'h ' : ''}${Math.round(v % 60)}m`, steps: d3.format(','), threshold_pace_s: (v) => `${Math.round(v)}s` };
+  const SVG = 'http://www.w3.org/2000/svg';
+  let pickedRun = null;
+  let tab = 'overview';
+
+  function latest(rows, field) {
+    for (let i = rows.length - 1; i >= 0; i--) if (rows[i][field] != null) return rows[i];
+    return null;
+  }
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function tooltip(box) {
+    let tip = box.querySelector(':scope > .ct-tip');
+    if (!tip) { tip = el('div', 'ct-tip'); tip.hidden = true; box.append(tip); }
+    return {
+      show(event, when, lines) {
+        tip.replaceChildren(el('div', 'when', when), ...lines.map((l) => el('div', null, l)));
+        tip.hidden = false;
+        const [x, y] = d3.pointer(event, box);
+        tip.style.left = Math.min(Math.max(0, x + 12), box.clientWidth - tip.offsetWidth) + 'px';
+        tip.style.top = Math.max(0, y - tip.offsetHeight - 10) + 'px';
+      },
+      hide() { tip.hidden = true; },
+    };
+  }
+
+  function emptyNote(box, text) { box.replaceChildren(el('p', 'ct-note', text)); }
+
+  // Sparkline with a gradient fill and the latest point marked, as in easyui's stat card.
+  function spark(box, rows, field, label) {
+    box.replaceChildren();
+    const pts = rows.filter((r) => r[field] != null).slice(-28);
+    if (!pts.length) return;
+    const W = Math.max(box.clientWidth, 120), H = 52, pad = 8;
+    const [lo, hi] = d3.extent(pts, (p) => p[field]);
+    const x = d3.scaleUtc(d3.extent(pts, (p) => asDate(p.date)), [6, W - 6]);
+    const y = d3.scaleLinear([lo, hi === lo ? lo + 1 : hi], [H - 6, pad]);
+    const color = dash.colors[0];
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+      .attr('aria-label', `${label} trend`);
+    const id = 'g' + box.closest('.ct-stat').id;
+    const g = svg.append('defs').append('linearGradient').attr('id', id).attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 1);
+    [[0, .26], [.5, .08], [1, 0]].forEach(([o, a]) => g.append('stop').attr('offset', o).style('stop-color', color).style('stop-opacity', a));
+    const px = (p) => (pts.length > 1 ? x(asDate(p.date)) : W - 6);
+    if (pts.length > 1) {
+      svg.append('path').datum(pts).attr('fill', `url(#${id})`).attr('d', d3.area(px, H, (p) => y(p[field])));
+      svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', color).attr('stroke-width', 2)
+        .attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', d3.line(px, (p) => y(p[field])));
+    }
+    const last = pts[pts.length - 1];
+    const ly = pts.length > 1 ? y(last[field]) : H / 2;
+    svg.append('circle').attr('class', 'ct-pulse').attr('cx', px(last)).attr('cy', ly).attr('r', 3.5).attr('fill', color);
+    svg.append('circle').attr('cx', px(last)).attr('cy', ly).attr('r', 3.5).attr('fill', color);
+    const t = tooltip(box);
+    svg.append('rect').attr('width', W).attr('height', H).attr('fill', 'transparent')
+      .on('mousemove', (e) => {
+        const [mx] = d3.pointer(e);
+        const p = pts.length > 1 ? d3.least(pts, (q) => Math.abs(px(q) - mx)) : last;
+        t.show(e, day(asDate(p.date)), [`${label} ${box.closest('.ct-stat').dataset.show ? p[box.closest('.ct-stat').dataset.show] : p[field]}`]);
+      })
+      .on('mouseleave', () => t.hide());
+  }
+
+  function statCard(card, daily, changes) {
+    const metric = card.dataset.metric;
+    const show = card.dataset.show || metric;
+    const label = card.querySelector('.lbl').textContent;
+    const valueEl = card.querySelector(`[data-field="${show}"]`);
+    const row = daily && latest(daily, show);
+    valueEl.classList.remove('dash-skeleton');
+    if (row) {
+      valueEl.setAttribute('data-where', 'date=' + row.date);
+      valueEl.textContent = metric === 'steps' ? d3.format(',')(row[show]) : row[show];
+    } else { valueEl.removeAttribute('data-where'); valueEl.textContent = '—'; }
+    const sub = card.querySelector('.sub');
+    if (sub && !sub.dataset.fixed && !sub.children.length) sub.textContent = row ? day(asDate(row.date)) : '';
+    const pill = card.querySelector('.ct-pill');
+    if (pill) {
+      const c = changes && changes.find((x) => x.metric === metric);
+      pill.replaceChildren();
+      delete pill.dataset.tone;
+      if (!c || c.change == null) { pill.textContent = 'New'; }
+      else {
+        const v = c.change;
+        if (v !== 0) {
+          const s = document.createElementNS(SVG, 'svg'); s.setAttribute('viewBox', '0 0 10 10'); s.setAttribute('aria-hidden', 'true');
+          if (v < 0) s.style.transform = 'rotate(180deg)';
+          const p = document.createElementNS(SVG, 'path'); p.setAttribute('d', 'M5 1.5 9 7.5H1Z'); p.setAttribute('fill', 'currentColor');
+          s.append(p); pill.append(s);
+          const good = card.dataset.good === 'up' ? v > 0 : card.dataset.good === 'down' ? v < 0 : null;
+          if (good !== null) pill.dataset.tone = good ? 'ok' : 'bad';
+        }
+        pill.append((CHANGE_FMT[metric] || ((n) => String(Math.abs(n))))(Math.abs(v)));
+      }
+    }
+    const box = card.querySelector('.ct-spark');
+    if (box && daily && !card.closest('[hidden]')) spark(box, daily, metric, label);
+  }
+
+  // Bars, optionally stacked. Hovering a bar dims the others.
+  function barChart(box, rows, { key, label, series, ref, refLabel, fmt, tip }) {
+    box.replaceChildren();
+    const W = Math.max(box.clientWidth, 260), H = 220, m = { t: 14, r: 6, b: 28, l: 38 };
+    const total = (d) => d3.sum(series, (s) => d[s.key] || 0);
+    const top = Math.max(d3.max(rows, total) || 0, ref || 0) * 1.12 || 1;
+    const x = d3.scaleBand(rows.map(key), [m.l, W - m.r]).padding(0.38);
+    const y = d3.scaleLinear([0, top], [H - m.b, m.t]).nice(4);
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    for (const t of y.ticks(4)) {
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t))
+        .attr('stroke', 'var(--cds-chart-grid)').attr('stroke-dasharray', t === 0 ? null : '2 4');
+      svg.append('text').attr('x', m.l - 8).attr('y', y(t)).attr('dy', '0.32em').attr('text-anchor', 'end')
+        .attr('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(fmt(t));
+    }
+    const bw = Math.min(34, x.bandwidth());
+    const every = Math.ceil(56 / x.step());
+    const t = tooltip(box);
+    const groups = [];
+    rows.forEach((d, i) => {
+      let base = 0;
+      const g = svg.append('g').style('transition', 'opacity .15s');
+      groups.push(g);
+      const parts = series.filter((s) => (d[s.key] || 0) > 0);
+      parts.forEach((s, j) => {
+        const v = d[s.key];
+        const r = j === parts.length - 1 ? 5 : 0;
+        const x0 = x(key(d)) + (x.bandwidth() - bw) / 2, y0 = y(base + v), h = Math.max(1, y(base) - y(base + v));
+        // Round only the top of the topmost segment.
+        const path = r ? `M${x0},${y0 + h}V${y0 + r}Q${x0},${y0} ${x0 + r},${y0}H${x0 + bw - r}Q${x0 + bw},${y0} ${x0 + bw},${y0 + r}V${y0 + h}Z`
+          : `M${x0},${y0}h${bw}v${h}h${-bw}Z`;
+        g.append('path').attr('d', path).attr('fill', typeof s.color === 'function' ? s.color(d) : s.color);
+        base += v;
+      });
+      g.append('rect').attr('x', x(key(d))).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+        .on('mousemove', (e) => { groups.forEach((o) => o.style('opacity', o === g ? 1 : 0.35)); t.show(e, label(d, true), tip(d)); })
+        .on('mouseleave', () => { groups.forEach((o) => o.style('opacity', 1)); t.hide(); });
+      if (i % every === 0) svg.append('text').attr('x', x(key(d)) + x.bandwidth() / 2).attr('y', H - 8).attr('text-anchor', 'middle')
+        .attr('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(label(d, false));
+    });
+    if (ref != null) {
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(ref)).attr('y2', y(ref))
+        .attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+      svg.append('text').attr('x', W - m.r).attr('y', y(ref) - 6).attr('text-anchor', 'end')
+        .attr('fill', 'var(--color-fg-muted)').style('font-size', '11px').text(refLabel);
+    }
+  }
+
+  function drawToday(daily, changes) {
+    const hero = document.getElementById('readiness');
+    const word = document.getElementById('ready-word');
+    const note = hero.querySelector('[data-field="readiness_note"]');
+    const rec = document.getElementById('rec-val');
+    word.classList.remove('dash-skeleton');
+    if (!daily) { word.textContent = '—'; note.textContent = '—'; rec.textContent = '—'; }
+    else {
+      const today = daily[daily.length - 1];
+      hero.dataset.state = today.readiness;
+      word.textContent = READY[today.readiness] || today.readiness;
+      note.setAttribute('data-where', 'date=' + today.date);
+      note.textContent = today.readiness_note;
+      const r = latest(daily, 'recovery_pct');
+      if (r) { rec.setAttribute('data-where', 'date=' + r.date); rec.textContent = r.recovery_pct; } else rec.textContent = '—';
+      const lv = latest(daily, 'running_level');
+      const level = document.getElementById('level-val');
+      if (lv) { level.setAttribute('data-where', 'date=' + lv.date); level.textContent = lv.running_level; }
+      for (const f of ['pred_5k', 'pred_10k', 'pred_half', 'pred_full']) {
+        const dd = document.querySelector(`#predictions [data-field="${f}"]`);
+        const pr = latest(daily, f);
+        if (pr) { dd.setAttribute('data-where', 'date=' + pr.date); dd.textContent = pr[f]; } else dd.textContent = '—';
+      }
+    }
+    document.querySelectorAll('.ct-stat[data-metric]').forEach((c) => statCard(c, daily, changes));
+    const ratio = document.querySelector('#s-ratio [data-field="load_ratio"]');
+    const rr = daily && latest(daily, 'load_ratio');
+    if (rr) { ratio.setAttribute('data-where', 'date=' + rr.date); ratio.textContent = rr.load_ratio; } else ratio.textContent = '—';
+  }
+
+  function drawTakeaway(daily, workouts, weeks) {
+    const p = document.querySelector('.ct-take');
+    p.classList.remove('dash-skeleton');
+    if (!daily || !workouts || !weeks) { p.textContent = '—'; return; }
+    const today = daily[daily.length - 1];
+    const next = workouts.find((w) => w.result === 'today' || w.result === 'upcoming');
+    const wk = weeks[weeks.length - 1];
+    const parts = [];
+    if (today.readiness === 'easy') parts.push(`Keep today easy: ${today.readiness_note.toLowerCase()}.`);
+    if (next) parts.push(`Next run: ${next.name.toLowerCase()} on ${day(asDate(next.date))}.`);
+    if (wk && wk.phase === 'baseline') parts.push(`Week ${wk.week_no} of 3 building your baseline, so keep runs in zone 2.`);
+    p.textContent = parts.join(' ') || 'Run /coros in Claude Code to refresh.';
+  }
+
+  function pill(text, tone) { const s = el('span', 'ct-pill', text); if (tone) s.dataset.tone = tone; return s; }
+
+  function drawWorkouts(workouts) {
+    const list = document.getElementById('wo-list');
+    list.classList.remove('dash-skeleton');
+    if (!workouts) { if (failed('workouts')) fail(list); else list.replaceChildren(); return; }
+    list.replaceChildren();
+    if (!workouts.length) { emptyNote(list, 'No runs yet. They are drafted on the first refresh after each week ends.'); return; }
+    const latestWeek = d3.max(workouts, (w) => w.week);
+    for (const w of workouts.filter((w) => w.week === latestWeek)) {
+      const card = el('div', 'ct-card ct-wo');
+      const pills = el('div', 'pills');
+      const res = { done: ['Done', 'ok'], missed: ['Missed', 'bad'], today: ['Today', 'warn'], upcoming: [null] }[w.result];
+      pills.append(pill(`${w.duration_min} min`), pill(w.status === 'on_watch' ? 'On your watch' : 'Draft', w.status === 'on_watch' ? 'ok' : null));
+      if (res[0]) pills.append(pill(res[0], res[1]));
+      if (w.grade) pills.append(pill(w.grade, { 'On target': 'ok', Partly: 'warn', 'Off target': 'bad' }[w.grade]));
+      card.append(el('span', 'day', day(asDate(w.date))), el('h3', null, w.name), pills, el('p', null, w.description));
+      if (w.grade_note) card.append(el('p', null, w.grade_note));
+      if (w.swap) card.append(el('p', 'swap', 'Your recovery looks low this morning. Swap this for an easy zone 2 run.'));
+      list.append(card);
+    }
+  }
+
+  function drawReports(weeks) {
+    const sel = document.getElementById('report-week');
+    const reported = (weeks || []).filter((w) => w.summary);
+    const keep = sel.value;
+    sel.replaceChildren(...reported.slice().reverse().map((w) => new Option(`Week ${w.week_no}, ${short(asDate(w.week))}`, w.week)));
+    sel.value = reported.some((w) => w.week === keep) ? keep : (reported.length ? reported[reported.length - 1].week : '');
+    const w = reported.find((r) => r.week === sel.value);
+    document.getElementById('report-summary').textContent = w ? w.summary : (failed('weeks') ? 'Failed to load' : 'The first report is written after your first full week.');
+    for (const k of ['good', 'bad', 'advice']) {
+      document.getElementById('report-' + k).replaceChildren(...(w && w[k] ? w[k].split('\n') : []).map((line) => el('li', null, line)));
+    }
+  }
+  document.getElementById('report-week').addEventListener('change', () => drawReports(rowsOf('weeks')));
+
+  function cell(tr, text, numeric) { tr.append(el('td', numeric ? 'n' : null, text ?? '')); }
+
+  function drawActivities(acts, laps) {
+    const body = document.querySelector('#act-table tbody');
+    body.replaceChildren();
+    for (const a of acts || []) {
+      const tr = document.createElement('tr'); tr.dataset.key = a.id;
+      if (laps && laps.some((l) => l.id === a.id)) { tr.className = 'run' + (a.id === pickedRun ? ' picked' : ''); tr.tabIndex = 0; }
+      cell(tr, day(asDate(a.date))); cell(tr, a.name); cell(tr, a.km, true); cell(tr, a.time, true); cell(tr, a.pace, true);
+      cell(tr, a.avg_hr, true); cell(tr, a.load, true); cell(tr, a.drift_pct, true); cell(tr, a.grade);
+      body.append(tr);
+    }
+    const mine = (laps || []).filter((l) => l.id === pickedRun);
+    document.getElementById('laps').hidden = !mine.length;
+    const lb = document.querySelector('#lap-table tbody');
+    lb.replaceChildren();
+    if (mine.length) {
+      const a = acts.find((x) => x.id === pickedRun);
+      document.getElementById('laps-title').textContent = `Splits, ${a.name.toLowerCase()} on ${day(asDate(a.date))}`;
+      for (const l of mine) {
+        const tr = document.createElement('tr'); tr.dataset.key = `${l.id},${l.lap}`;
+        cell(tr, l.lap); cell(tr, l.km, true); cell(tr, l.pace, true); cell(tr, l.avg_hr, true); cell(tr, l.zone, true);
+        lb.append(tr);
+      }
+    }
+  }
+  const pick = (e) => {
+    const tr = e.target.closest('tr.run');
+    if (!tr || (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ')) return;
+    e.preventDefault();
+    pickedRun = pickedRun === tr.dataset.key ? null : tr.dataset.key;
+    drawActivities(rowsOf('activities'), rowsOf('laps'));
+  };
+  document.querySelector('#act-table').addEventListener('click', pick);
+  document.querySelector('#act-table').addEventListener('keydown', pick);
+
+  function drawEasy(weeks) {
+    const body = document.querySelector('#easy-table tbody');
+    body.replaceChildren();
+    document.getElementById('zones-missing').hidden = !weeks || weeks.some((w) => 'z1_min' in w);
+    for (const w of weeks || []) {
+      const tr = document.createElement('tr'); tr.dataset.key = w.week;
+      cell(tr, short(asDate(w.week))); cell(tr, w.easy_pace, true); cell(tr, w.longest_easy_min, true);
+      body.append(tr);
+    }
+  }
+
+  function drawTraining(acts, weeks) {
+    const driftBox = document.getElementById('drift-chart');
+    if (acts) {
+      const runs = acts.filter((a) => a.drift_pct != null).reverse();
+      if (runs.length) barChart(driftBox, runs, {
+        key: (d) => d.id, label: (d, long) => long ? day(asDate(d.date)) : short(asDate(d.date)),
+        series: [{ key: 'drift_pct', color: (d) => d.drift_pct > 5 ? 'var(--cds-chart-status-critical)' : dash.colors[0] }],
+        ref: 5, refLabel: '5% target', fmt: (v) => v + '%', tip: (d) => [`Drift ${d.drift_pct}%`, `${d.km} km at ${d.pace}/km, avg HR ${d.avg_hr}`],
+      });
+      else emptyNote(driftBox, 'Appears after your first run of 30 minutes or more.');
+    } else if (failed('activities')) fail(driftBox); else driftBox.replaceChildren();
+
+    const kmBox = document.getElementById('km-chart');
+    const zoneBox = document.getElementById('zone-chart');
+    const legend = document.getElementById('zone-legend');
+    if (!weeks) { for (const b of [kmBox, zoneBox]) if (failed('weeks')) fail(b); else b.replaceChildren(); return; }
+    const wl = (d, long) => (long ? 'Week of ' : '') + short(asDate(d.week));
+    barChart(kmBox, weeks, {
+      key: (d) => d.week, label: wl, series: [{ key: 'run_km', color: dash.colors[0] }], fmt: (v) => v,
+      tip: (d) => [`${d.run_km} km over ${d.runs} runs`, `Total load ${d.load}`],
+    });
+    const zoneColors = [dash.colors[0], dash.colors[1], dash.colors[2], dash.colors[3], 'var(--cds-chart-status-critical)'];
+    const zones = zoneColors.map((color, i) => ({ key: `z${i + 1}_min`, label: `Zone ${i + 1}`, color }));
+    if (weeks.some((w) => 'z1_min' in w)) {
+      legend.replaceChildren(...zones.map((z) => { const s = el('span'); const i = el('i'); i.style.background = z.color; s.append(i, z.label); return s; }));
+      barChart(zoneBox, weeks, { key: (d) => d.week, label: wl, series: zones, fmt: (v) => v, tip: (d) => zones.map((z) => `${z.label}: ${d[z.key]} min`) });
+    } else { legend.replaceChildren(); emptyNote(zoneBox, 'Needs your heart-rate zones. Ask Claude to set them from the COROS app.'); }
+  }
+
+  function drawAll() {
+    const daily = rowsOf('daily'), acts = rowsOf('activities'), laps = rowsOf('laps'), weeks = rowsOf('weeks'), workouts = rowsOf('workouts');
+    const changes = dash.data('changes').status === 'ok' ? dash.data('changes').data : null;
+    drawTakeaway(daily, workouts, weeks);
+    drawToday(daily, changes);
+    drawWorkouts(workouts);
+    if (tab === 'training') { drawEasy(weeks); drawTraining(acts, weeks); }
+    drawReports(weeks);
+    drawActivities(acts, laps);
+  }
+
+  function show(name) {
+    tab = name;
+    for (const b of document.querySelectorAll('.ct-tabs button')) b.setAttribute('aria-selected', String(b.getAttribute('aria-controls') === name));
+    for (const p of document.querySelectorAll('.ct-page')) p.hidden = p.id !== name;
+    dash.setLink(name);
+    drawAll();
+  }
+  for (const b of document.querySelectorAll('.ct-tabs button')) b.addEventListener('click', () => show(b.getAttribute('aria-controls')));
+  document.querySelector('.ct-tabs').addEventListener('keydown', (e) => {
+    const tabs = [...document.querySelectorAll('.ct-tabs button')];
+    const i = tabs.findIndex((b) => b.getAttribute('aria-selected') === 'true');
+    const next = e.key === 'ArrowRight' ? tabs[(i + 1) % tabs.length] : e.key === 'ArrowLeft' ? tabs[(i + tabs.length - 1) % tabs.length] : null;
+    if (next) { e.preventDefault(); next.focus(); show(next.getAttribute('aria-controls')); }
+  });
+
+  const start = location.hash.slice(1);
+  if (['training', 'reports', 'activities'].includes(start)) show(start);
+  dash.onData(drawAll);
+</script>
