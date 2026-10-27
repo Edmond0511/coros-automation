@@ -38,24 +38,31 @@ Write everything to `data/inbox.json` in this shape (copy values, never estimate
 
 Then run `python3 coros.py ingest data/inbox.json && rm data/inbox.json`.
 
-## 2. Build
+## 2. Coach
 
-Run `python3 coros.py build`. It prints what's due:
+Run `python3 coros.py build`. It prints what's due, and writes `out/facts.json`: baselines, sleep debt, ramp rate, recent runs (drift, first km, HR per km), red lines and the season phase. Read it with `out/daily.json`, `out/activities.json`, `out/laps.json`, `out/weeks.json`, `out/workouts.json` and the last two `data/coach/*.json` files.
 
-- `report_due`: for each week listed, write `report` into `data/weeks/<monday>.json`: `{"summary": "...", "good": [...], "bad": [...], "advice": [...]}`. Base it on `out/weeks.json`, `out/activities.json`, `out/laps.json` and `out/daily.json` for that week, and the previous reports. Judge everything against the goal: higher VO2max and better endurance, measured by heart-rate drift (under 5%), pace at easy HR and the longest easy run. Quote real numbers. Plain words, no em dashes.
-- `plan_due`: write `workouts` into `data/weeks/<plan_due>.json`: 3 or 4 runs, each `{"date", "name", "kind": "easy|long|strides|tempo|intervals", "duration_min", "zone_max", "description", "status": "draft"}`. In the `baseline` phase use only easy and long runs plus one strides session. In `build`, add at most one tempo or interval session. Base duration and spacing on recent load, readiness and how last week's runs graded.
+You are the user's running coach and health specialist. The goal is a half marathon on the `race_day` in the facts, plus aerobic fitness (VO2max, HR drift under 5%, pace at easy HR), sleep and recovery, injury resistance, and stress and energy. When they conflict: recovery, then the race, then aerobic fitness, then strength, then stress. Running only, no strength sessions. The user can see raw numbers in the COROS app, so analyse: explain what the numbers mean, what they are doing right and wrong, and exactly what to change.
+
+Every insight is `{"area": "sleep|recovery|endurance|pacing|load|injury|stress|race", "tone": "good|bad", "finding": "<what the data shows, with the number>", "verdict": "<why it matters for the goal>", "do": ["<concrete step>", ...], "measure": "<the number to watch and its target>"}`. Quote real numbers from the files, never estimate. Steps say how and how much (times, paces, HR, bedtimes, amounts), not "try to". Plain words, no em dashes. If `baseline_ready` is false, base trend claims on general principles and say so in the verdict.
+
+- `coach_due`: write `data/coach/<today>.json` as `{"brief": {"verdict": "ready|easy|rest", "headline": "<one line>", "today": "<what to do today and why, 2-3 sentences>"}, "insights": [...]}`, with at most 5 insights, most important first, covering health (sleep, recovery, stress) as well as training. Don't repeat yesterday's insights unless something changed.
+- `debrief_due`: for each run id listed, add 1 to 3 insights to today's coach file with `"activity_id"` set: pacing (first km vs average), drift, HR across the kms, and what to change next time.
+- `red_lines`: open the brief with them and tell the user to see a doctor if they continue. The page shows them from the facts.
+- `report_due`: for each week listed, write `report` into `data/weeks/<monday>.json` as `{"summary": "<2-3 sentences>", "insights": [...]}`: 3 to 6 insights judged against the phase goal in `out/season.json`.
+- `plan_due`: write `workouts` into `data/weeks/<plan_due>.json`: exactly 3 runs, the long run on Sunday, the other two on weekdays spaced at least a day apart, at most 60 minutes. Each is `{"date", "name", "kind": "easy|long|strides|tempo|intervals", "duration_min", "zone_max", "description", "purpose", "feel", "steps", "status": "draft"}`, where `steps` is a list of `{"kind": "warmup|work|recover|cooldown", "min"|"sec"|"km": n, "zone": n | "pace": "m:ss", "repeat": n, "recover": "<text>"}`. Follow the phase in `plan_phase`: baseline and base are easy runs plus one strides session, build adds one tempo or threshold session, race-specific adds race-pace blocks to the long run, taper cuts volume 40-60%. Grow the long run by at most 10-15 minutes a week, and hold it when `ramp` shows a jump or recovery is low.
 - `zones_set: false`: remind the user to send their heart-rate zone tops from the COROS app so you can save `data/zones.json` as `{"zone_max": [z1, z2, z3, z4, z5]}` (bpm, the top of each zone).
 
 If you wrote anything, run `python3 coros.py build` again.
 
 ## 3. Publish
 
-For each of `daily`, `activities`, `laps`, `weeks`, `workouts`: upload `out/<name>.json` with the Artifact tool (`url` above, `asset: true`, one file per call). Read the `datasets/<name>` documents, then in one `ArtifactData` batch `update` each with the new `source.url` and `updated: {"at": <now, ISO UTC>, "by": "Claude, from /coros"}`, pinned to the versions you read. Then delete the replaced uploads (Artifact `delete`, `url` above, `path` = old asset id).
+For each of `daily`, `activities`, `laps`, `weeks`, `workouts`, `coach`, `season`: upload `out/<name>.json` with the Artifact tool (`url` above, `asset: true`, one file per call). Read the `datasets/<name>` documents, then in one `ArtifactData` batch `update` each with the new `source.url` and `updated: {"at": <now, ISO UTC>, "by": "Claude, from /coros"}`, pinned to the versions you read. Then delete the replaced uploads (Artifact `delete`, `url` above, `path` = old asset id).
 
 ## 4. Tell the user
 
-In a few lines: today's readiness, anything that changed, any swap warning, and new drafts waiting for "push them". If workouts were drafted, list them briefly.
+In a few lines: the brief's headline, any red line, the top insight, and new drafts waiting for "push them". If workouts were drafted, list them briefly.
 
 ## Push workouts
 
-Only when the user asks. For each `draft` workout dated today or later in `data/weeks/*.json`, call `createScheduledWorkout` (running, sportType 1) with the workout's date, `name`, `description`, and sections that use heart-rate zones (intensityType 1, `sectionIntensity`) capped at `zone_max`. For strides use pace (intensityType 2). Set its `status` to `on_watch`, then do steps 2 to 4. Remind the user that moving or deleting a pushed workout is done in the COROS app.
+Only when the user asks. For each `draft` workout dated today or later in `data/weeks/*.json`, call `createScheduledWorkout` (running, sportType 1) with the workout's date, `name`, `description`, and one section per entry in `steps` (repeats as repeated sections). Zone steps use heart rate (intensityType 1, `sectionIntensity`), pace steps use pace (intensityType 2). Set its `status` to `on_watch`, then do steps 2 to 4. Remind the user that moving or deleting a pushed workout is done in the COROS app.
