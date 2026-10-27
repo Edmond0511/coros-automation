@@ -9,6 +9,8 @@ If the argument is `push`, skip to **Push workouts**.
 
 ## 1. Pull
 
+If no `mcp__coros__*` tools are available, stop and tell the user to run `/mcp` and connect `coros`. Never build or publish without pulling first.
+
 Read `data/days.json` and `data/activities.json` to find the newest date already stored. Pull from that date (minus one day, since sleep and resting HR land late) through today using the COROS MCP:
 
 - `queryDailyHealthData` (days to cover the gap), `querySleepHrv` (max 7 days per call), `queryRestingHeartRate`
