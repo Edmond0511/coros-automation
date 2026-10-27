@@ -78,13 +78,6 @@
   .ct-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--color-fg-muted); }
   .ct-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
 
-  .ct-report { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
-  .ct-report ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 13px; line-height: 1.55; }
-  .ct-report li { padding-left: 16px; position: relative; }
-  .ct-report li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--ct-dot-c, var(--cds-chart-muted)); }
-  .ct-report .good { --ct-dot-c: var(--color-ok); }
-  .ct-report .bad { --ct-dot-c: var(--color-bad); }
-  .ct-report .advice { --ct-dot-c: var(--color-fg); }
   .ct-summary { margin: 0; font-size: 14px; line-height: 1.6; max-width: 70ch; }
   .ct select { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 999px; border: 0; background: var(--ct-wash); color: var(--color-fg); }
 
@@ -100,6 +93,33 @@
   .ct tr.picked td { background: var(--ct-wash); }
   .ct-laps[hidden] { display: none; }
 
+  .ct-brief { gap: 10px; padding: 20px; }
+  .ct-brief .state { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.25; }
+  .ct-brief[data-state="ready"] .ct-dot { background: var(--color-ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-ok) 18%, transparent); }
+  .ct-brief[data-state="easy"] .ct-dot, .ct-brief[data-state="rest"] .ct-dot { background: var(--color-warn); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-warn) 18%, transparent); }
+  .ct-brief .today { margin: 0; font-size: 14px; line-height: 1.6; max-width: 70ch; }
+  .ct-alert { border-radius: 12px; padding: 10px 14px; font-size: 13px; line-height: 1.5; background: color-mix(in srgb, var(--color-bad) 10%, transparent); color: var(--color-bad); }
+
+  .ct-ins { gap: 8px; }
+  .ct-ins .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ct-ins .verdict, .ct-ins .measure { margin: 0; font-size: 13px; line-height: 1.55; color: var(--color-fg-muted); }
+  .ct-ins .lbl { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--color-fg-muted); margin: 4px 0 0; }
+  .ct-ins ol { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13px; line-height: 1.55; }
+  .ct-ins .measure strong { color: var(--color-fg); font-weight: 600; }
+  .ct-ins-list { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+
+  .ct-wo ol { margin: 0; padding-left: 18px; font-size: 12.5px; line-height: 1.6; }
+  .ct-wo .feel { font-style: italic; }
+  .ct-wo details summary { cursor: pointer; font-size: 12.5px; color: var(--color-fg-muted); }
+  .ct-wo details[open] { display: grid; gap: 8px; }
+
+  .ct-season { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: 10px; }
+  .ct-phase { gap: 6px; padding: 14px; }
+  .ct-phase[data-current="true"] { box-shadow: 0 0 0 2px var(--color-fg), 0 18px 36px -28px rgb(0 0 0 / .22); }
+  .ct-phase[data-past="true"] { opacity: .55; }
+  .ct-phase p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--color-fg-muted); }
+  .ct-phase .when { font-size: 11.5px; }
+
   [data-dash-source-state=empty] { color: transparent; }
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
   .ct-fail { display: flex; align-items: center; justify-content: center; gap: .5em; min-height: inherit; color: var(--color-fg-muted); font-size: 12px; }
@@ -110,20 +130,45 @@
   <div class="ct-top">
     <div>
       <h1 id="top">COROS Training</h1>
-      <p class="ct-take dash-skeleton" data-source="daily workouts weeks">—</p>
+      <p class="ct-take dash-skeleton" data-source="season">—</p>
     </div>
     <div class="ct-tabs" role="tablist" aria-label="Sections">
-      <button role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Coach</button>
       <button role="tab" id="tab-training" aria-controls="training" aria-selected="false">Training</button>
-      <button role="tab" id="tab-reports" aria-controls="reports" aria-selected="false">Reports</button>
+      <button role="tab" id="tab-reports" aria-controls="reports" aria-selected="false">Reviews</button>
       <button role="tab" id="tab-activities" aria-controls="activities" aria-selected="false">Activities</button>
     </div>
   </div>
 
   <!-- Overview -->
   <section class="ct-page" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="ct-block" id="brief-block">
+      <header><h2>Today's brief</h2><p class="ct-muted" id="brief-date"></p></header>
+      <div class="ct-card ct-brief dash-skeleton" id="brief" data-source="coach">
+        <div class="state"><span class="ct-dot"></span><span id="brief-head">—</span></div>
+        <p class="today" id="brief-today"></p>
+        <div id="brief-alerts"></div>
+        <p class="ct-note" id="brief-baseline" hidden>Your personal baselines need about two weeks of data, so today's advice leans on general training principles more than your own trends.</p>
+      </div>
+    </div>
+
+    <div class="ct-block" id="insights-block">
+      <header><h2>What to work on</h2><p class="ct-muted">Most important first</p></header>
+      <div class="ct-ins-list dash-skeleton" id="insights" data-source="coach"></div>
+    </div>
+
+    <div class="ct-block" id="workouts">
+      <header><h2>This week's runs</h2><p class="ct-muted">Drafts stay off your watch until you tell Claude "push them"</p></header>
+      <div class="ct-row dash-skeleton" id="wo-list" data-source="workouts"></div>
+    </div>
+
+    <div class="ct-block" id="season-block">
+      <header><h2>Road to the half marathon</h2><p class="ct-muted" id="season-left"></p></header>
+      <div class="ct-season dash-skeleton" id="season" data-source="season"></div>
+    </div>
+
     <div class="ct-block" id="today">
-      <header><h2>Today</h2><p class="ct-muted">Changes are against your previous 7 days</p></header>
+      <header><h2>Your numbers</h2><p class="ct-muted">For reference. Changes are against your previous 7 days</p></header>
       <div class="ct-row">
         <div class="ct-card ct-hero" id="readiness">
           <span class="ct-muted">Ready to train hard?</span>
@@ -141,13 +186,8 @@
       </div>
     </div>
 
-    <div class="ct-block" id="workouts">
-      <header><h2>This week's runs</h2><p class="ct-muted">Drafts stay off your watch until you tell Claude "push them"</p></header>
-      <div class="ct-row dash-skeleton" id="wo-list" data-source="workouts"></div>
-    </div>
-
     <div class="ct-block" id="goals">
-      <header><h2>Fitness</h2><p class="ct-muted">Baseline weeks 1 to 3. A VO2max target is proposed after week 3.</p></header>
+      <header><h2>Fitness</h2><p class="ct-muted">COROS estimates. Your half marathon target is proposed when baseline ends on Nov 8.</p></header>
       <div class="ct-row">
         <div class="ct-card ct-stat" id="s-vo2" data-metric="vo2max" data-good="up"><div class="head"><span class="lbl">VO2max</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=vo2max"></span></div><p class="ct-num" data-source="daily" data-field="vo2max">—</p><p class="sub">Running level <span data-source="daily" data-field="running_level" id="level-val">—</span></p><div class="ct-spark" data-source="daily"></div></div>
         <div class="ct-card ct-stat" id="s-thr" data-metric="threshold_pace_s" data-show="threshold_pace" data-good="down"><div class="head"><span class="lbl">Threshold pace</span><span class="ct-pill" data-source="changes" data-field="change" data-where="metric=threshold_pace_s"></span></div><p class="ct-num"><span data-source="daily" data-field="threshold_pace">—</span><small>/km</small></p><p class="sub"></p><div class="ct-spark" data-source="daily"></div></div>
@@ -213,22 +253,18 @@
   <!-- Reports -->
   <section class="ct-page" id="reports" role="tabpanel" aria-labelledby="tab-reports" hidden>
     <div class="ct-block">
-      <header><h2>Weekly report</h2><select id="report-week" aria-label="Week"></select></header>
+      <header><h2>Weekly review</h2><select id="report-week" aria-label="Week"></select></header>
       <div class="ct-card" id="report" data-source="weeks">
         <p class="ct-summary" id="report-summary"></p>
       </div>
-      <div class="ct-report">
-        <div class="ct-card"><h3>Went well</h3><ul class="good" id="report-good"></ul></div>
-        <div class="ct-card"><h3>Needs work</h3><ul class="bad" id="report-bad"></ul></div>
-        <div class="ct-card"><h3>What to do next</h3><ul class="advice" id="report-advice"></ul></div>
-      </div>
+      <div class="ct-ins-list" id="report-insights" data-source="coach"></div>
     </div>
   </section>
 
   <!-- Activities -->
   <section class="ct-page" id="activities" role="tabpanel" aria-labelledby="tab-activities" hidden>
     <div class="ct-block">
-      <header><h2>Recent activities</h2><p class="ct-muted">Select a run to see its 1 km splits</p></header>
+      <header><h2>Recent activities</h2><p class="ct-muted">Select a run to see its 1 km splits and debrief</p></header>
       <div class="ct-card ct-table">
         <table data-source="activities" data-row-key="id" id="act-table">
           <thead><tr>
@@ -241,6 +277,7 @@
       </div>
       <div class="ct-card ct-table ct-laps" id="laps" hidden>
         <h3 id="laps-title" style="padding: 8px 12px 0">Splits</h3>
+        <div class="ct-ins-list" id="debrief" style="padding: 8px 12px" data-source="coach"></div>
         <table data-source="laps" data-row-key="id,lap" id="lap-table">
           <thead><tr><th data-field="lap">km</th><th class="n" data-field="km">Distance</th><th class="n" data-field="pace">Pace /km</th><th class="n" data-field="avg_hr">Avg HR</th><th class="n" data-field="zone">Zone</th></tr></thead>
           <tbody></tbody>
@@ -458,18 +495,88 @@
     if (rr) { ratio.setAttribute('data-where', 'date=' + rr.date); ratio.textContent = rr.load_ratio; } else ratio.textContent = '—';
   }
 
-  function drawTakeaway(daily, workouts, weeks) {
+  function drawTakeaway(season) {
     const p = document.querySelector('.ct-take');
     p.classList.remove('dash-skeleton');
-    if (!daily || !workouts || !weeks) { p.textContent = '—'; return; }
-    const today = daily[daily.length - 1];
-    const next = workouts.find((w) => w.result === 'today' || w.result === 'upcoming');
-    const wk = weeks[weeks.length - 1];
-    const parts = [];
-    if (today.readiness === 'easy') parts.push(`Keep today easy: ${today.readiness_note.toLowerCase()}.`);
-    if (next) parts.push(`Next run: ${next.name.toLowerCase()} on ${day(asDate(next.date))}.`);
-    if (wk && wk.phase === 'baseline') parts.push(`Week ${wk.week_no} of 3 building your baseline, so keep runs in zone 2.`);
-    p.textContent = parts.join(' ') || 'Run /coros in Claude Code to refresh.';
+    const cur = season && season.find((s) => s.current);
+    const race = season && season[season.length - 1];
+    if (!cur || !race) { p.textContent = 'Run /coros in Claude Code to refresh.'; return; }
+    const weeksLeft = Math.max(0, Math.floor((asDate(race.end) - Date.now()) / 6048e5));
+    p.textContent = `${cur.name} phase: ${cur.goal[0].toLowerCase()}${cur.goal.slice(1)}. ${weeksLeft} weeks to your half marathon on ${day(asDate(race.end))}.`;
+  }
+
+  // One coaching card: finding, verdict, what to do, how you'll know.
+  function insightCard(r) {
+    const card = el('div', 'ct-card ct-ins');
+    if (r.tone) card.dataset.tone = r.tone;
+    const head = el('div', 'pills');
+    if (r.area) head.append(pill(r.area[0].toUpperCase() + r.area.slice(1)));
+    if (r.tone) head.append(pill(r.tone === 'good' ? 'Going well' : 'Needs work', r.tone === 'good' ? 'ok' : 'bad'));
+    card.append(head, el('h3', null, r.title));
+    if (r.verdict) card.append(el('p', 'verdict', r.verdict));
+    if (r.do) {
+      const ol = el('ol');
+      ol.append(...r.do.split('\n').map((t) => el('li', null, t)));
+      card.append(el('p', 'lbl', 'What to do'), ol);
+    }
+    if (r.measure) {
+      const m = el('p', 'measure');
+      m.append(el('strong', null, 'How you\'ll know: '), r.measure);
+      card.append(m);
+    }
+    return card;
+  }
+
+  function latestDate(rows, kind) { return d3.max(rows.filter((r) => r.kind === kind), (r) => r.date); }
+  const byOrder = (a, b) => a.order - b.order;
+
+  function drawBrief(coach, daily) {
+    const card = document.getElementById('brief');
+    card.classList.remove('dash-skeleton');
+    const head = document.getElementById('brief-head'), today = document.getElementById('brief-today');
+    const alerts = document.getElementById('brief-alerts');
+    alerts.replaceChildren();
+    const b = coach && coach.find((r) => r.kind === 'brief' && r.date === latestDate(coach, 'brief'));
+    const t = daily && daily[daily.length - 1];
+    if (b) {
+      card.dataset.state = b.tone;
+      head.textContent = b.title;
+      today.textContent = b.verdict;
+      document.getElementById('brief-date').textContent = day(asDate(b.date));
+      if (b.alerts) for (const line of b.alerts.split('\n')) alerts.append(el('p', 'ct-alert', `See a doctor if this continues: ${line}.`));
+    } else if (t) {
+      card.dataset.state = t.readiness;
+      head.textContent = READY[t.readiness] || t.readiness;
+      today.textContent = `${t.readiness_note}. Run /coros in Claude Code for today's coaching.`;
+    } else if (failed('coach')) fail(card);
+    document.getElementById('brief-baseline').hidden = !(b && b.baseline_ready === false);
+  }
+
+  function drawInsights(coach) {
+    const box = document.getElementById('insights');
+    box.classList.remove('dash-skeleton');
+    if (!coach) { if (failed('coach')) fail(box); else box.replaceChildren(); return; }
+    const when = latestDate(coach, 'insight');
+    const rows = coach.filter((r) => r.kind === 'insight' && r.date === when).sort(byOrder);
+    box.replaceChildren(...rows.map(insightCard));
+    if (!rows.length) emptyNote(box, 'Insights are written on the next /coros run.');
+  }
+
+  function drawSeason(season) {
+    const box = document.getElementById('season');
+    box.classList.remove('dash-skeleton');
+    if (!season) { if (failed('season')) fail(box); else box.replaceChildren(); return; }
+    const now = new Date();
+    box.replaceChildren(...season.map((s) => {
+      const c = el('div', 'ct-card ct-phase');
+      c.dataset.current = String(s.current);
+      c.dataset.past = String(asDate(s.end) < now && !s.current);
+      c.append(el('span', 'ct-muted when', `${short(asDate(s.start))} to ${short(asDate(s.end))}`), el('h3', null, s.name),
+        el('p', null, s.goal), el('p', null, `Key sessions: ${s.key}`), el('p', null, `Working when: ${s.signs}`));
+      return c;
+    }));
+    const race = season[season.length - 1];
+    document.getElementById('season-left').textContent = `Race day ${day(asDate(race.end))}`;
   }
 
   function pill(text, tone) { const s = el('span', 'ct-pill', text); if (tone) s.dataset.tone = tone; return s; }
@@ -489,6 +596,15 @@
       if (res[0]) pills.append(pill(res[0], res[1]));
       if (w.grade) pills.append(pill(w.grade, { 'On target': 'ok', Partly: 'warn', 'Off target': 'bad' }[w.grade]));
       card.append(el('span', 'day', day(asDate(w.date))), el('h3', null, w.name), pills, el('p', null, w.description));
+      if (w.purpose) card.append(el('p', null, w.purpose));
+      if (w.steps_text) {
+        const det = el('details');
+        const ol = el('ol');
+        ol.append(...w.steps_text.split('\n').map((t) => el('li', null, t)));
+        det.append(el('summary', null, 'Steps'), ol);
+        if (w.feel) det.append(el('p', 'feel', w.feel));
+        card.append(det);
+      }
       if (w.grade_note) card.append(el('p', null, w.grade_note));
       if (w.swap) card.append(el('p', 'swap', 'Your recovery looks low this morning. Swap this for an easy zone 2 run.'));
       list.append(card);
@@ -502,10 +618,10 @@
     sel.replaceChildren(...reported.slice().reverse().map((w) => new Option(`Week ${w.week_no}, ${short(asDate(w.week))}`, w.week)));
     sel.value = reported.some((w) => w.week === keep) ? keep : (reported.length ? reported[reported.length - 1].week : '');
     const w = reported.find((r) => r.week === sel.value);
-    document.getElementById('report-summary').textContent = w ? w.summary : (failed('weeks') ? 'Failed to load' : 'The first report is written after your first full week.');
-    for (const k of ['good', 'bad', 'advice']) {
-      document.getElementById('report-' + k).replaceChildren(...(w && w[k] ? w[k].split('\n') : []).map((line) => el('li', null, line)));
-    }
+    document.getElementById('report-summary').textContent = w ? w.summary : (failed('weeks') ? 'Failed to load' : 'The first review is written after your first full week.');
+    const coach = rowsOf('coach') || [];
+    document.getElementById('report-insights').replaceChildren(
+      ...(w ? coach.filter((r) => r.kind === 'review' && r.week === w.week).sort(byOrder) : []).map(insightCard));
   }
   document.getElementById('report-week').addEventListener('change', () => drawReports(rowsOf('weeks')));
 
@@ -521,6 +637,8 @@
       cell(tr, a.avg_hr, true); cell(tr, a.load, true); cell(tr, a.drift_pct, true); cell(tr, a.grade);
       body.append(tr);
     }
+    const notes = (rowsOf('coach') || []).filter((r) => r.kind === 'debrief' && r.activity_id === pickedRun).sort(byOrder);
+    document.getElementById('debrief').replaceChildren(...notes.map(insightCard));
     const mine = (laps || []).filter((l) => l.id === pickedRun);
     document.getElementById('laps').hidden = !mine.length;
     const lb = document.querySelector('#lap-table tbody');
@@ -588,7 +706,11 @@
   function drawAll() {
     const daily = rowsOf('daily'), acts = rowsOf('activities'), laps = rowsOf('laps'), weeks = rowsOf('weeks'), workouts = rowsOf('workouts');
     const changes = dash.data('changes').status === 'ok' ? dash.data('changes').data : null;
-    drawTakeaway(daily, workouts, weeks);
+    const coach = rowsOf('coach'), season = rowsOf('season');
+    drawTakeaway(season);
+    drawBrief(coach, daily);
+    drawInsights(coach);
+    drawSeason(season);
     drawToday(daily, changes);
     drawWorkouts(workouts);
     if (tab === 'training') { drawEasy(weeks); drawTraining(acts, weeks); }
