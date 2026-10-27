@@ -5,6 +5,8 @@ argument-hint: "[push]"
 
 Refresh the COROS Training dashboard: https://claude.ai/artifact/684Px6daBtGf8fM7T4Ke47
 
+All paths below are relative to `/Users/edmondyang/Documents/code/coros-dashboard`. This command runs from any folder, so `cd` there before each shell command.
+
 If the argument is `push`, skip to **Push workouts**.
 
 ## 1. Pull
