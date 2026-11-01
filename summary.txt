@@ -1,42 +1,43 @@
 2026-11-01 · Sun · EASY
-Short sleep, HRV back in range: easy long run today.
+Short sleep again (4h 11m), but HRV is back in range and resting HR is low: run easy, not long.
 
 TODAY'S BRIEF
-You slept 4h 11m last night (deep 46 min, REM 58 min), and your 7-day sleep average is 5h 6m. HRV recovered to 27 ms from 22 ms on Saturday and resting HR is 61 bpm against a 62.5 average, so easy work is fine. Run the Sunday long run as 45 minutes at HR 145 or lower, and walk whenever HR passes 145. Go/no-go: if HR is above 145 after 10 minutes of jogging, or legs feel flat, switch to a 30 minute walk-jog. No strength today.
-Tonight: phone away at 9:30 pm, lights out by 10:00 pm, alarm 6:30 am for 8h 30m in bed.
+Last night was 4h 11m (deep 46m, REM 58m) and the 7-day average is 5h 6m. HRV recovered to 27 ms (COROS normal range 27 to 33) after 22 ms on Saturday, and resting HR is 61, 1.5 under its 7-day average of 62.5, so your body is coping. Nothing is scheduled in COROS, so the plan's Sunday long run becomes an easy one today: 40 minutes at HR 135 to 145, flat route, with 1 minute of walking whenever HR passes 145. Go check: if your first 10 minutes need walking just to stay under 145, or legs feel heavy, cut it to 25 minutes. Sleep is the limiter, not fitness.
+Tonight: phone down 9:45 pm, lights out 10:30 pm, alarm 6:30 am for 8h in bed.
 
 NUMBERS
-Sleep 4h 11m (deep 46m, REM 58m) | HRV 27 ms vs 7-day avg 26 (COROS normal range 27 to 33) | RHR 61 vs 7-day avg 62.5 (Oct 26 reading of 82 left out as an outlier) | Recovery 100%
+Sleep 4h 11m (deep 46m, REM 58m) · HRV 27 ms vs 7-day avg 26 (night of 10-26 had no reading), COROS range 27-33 · RHR 61 vs 62.5 avg (10-26 reading of 82 left out as an outlier) · Recovery 100%
 
 WHAT TO WORK ON
-1. Training · Needs work
-Friday's 5.39 km run averaged HR 165, 20 bpm over your 145 easy cap.
-HR per km was 158, 166, 164, 165, 168, then 170 for the last 0.39 km, while pace went from 7:23 in km 1 to 6:58 in km 5. HR rose 6% from km 1 to km 5 while pace got faster, so it is not clean drift, just not an easy effort (load 115, aerobic TE 3.0). All 6 run sessions in the last 14 days averaged 157 to 170 bpm, including a 1.49 km run at 5:49 /km that morning (HR 169, max 185).
-What to do:
-- Today, start with 3 minutes of walking, then jog so HR stays at 145 or lower; walk until HR drops to 135 before jogging again.
-- Expect a pace slower than last Sunday's 7:17 /km.
-How you'll know: average HR 145 or lower on every run this week, starting with today's.
 
-2. Sleep · Needs work
-Sleep averaged 5h 6m over the last 6 recorded nights, and 3 of the last 8 nights were under 5h (3h 11m, 4h 25m, 4h 11m).
-Short sleep is holding back recovery more than mileage is. The 29 min on Oct 26 is missing data and left out of the average.
+1. Sleep · Needs work
+Six valid nights average 5h 6m, with lights-out between 12:29 am and 2:52 am.
+Short sleep is the main thing holding HRV at 26 against a baseline of 30. More sleep will lift every other number.
 What to do:
-- Lights out by 10:00 pm every night this week, alarm 6:30 am.
-- No caffeine after 1:00 pm.
-How you'll know: at least 7h of sleep on 4 of the next 7 nights, 7-day average 6h 30m or higher by Sunday 11/8.
+- Lights out by 10:30 pm tonight and Monday, alarm 6:30 am.
+- If you still wake early, add a 20 minute nap before 3:00 pm, no later.
+How you'll know: one night of 7h or more by Wednesday, and the 7-day average above 6h by next Sunday.
 
-3. Recovery · Good
-HRV was 27 ms last night, back inside the COROS range of 27 to 33 after a low 22 ms on Saturday.
-Resting HR of 61 bpm is below your 62.5 average and stress is 26, the lowest in 8 days. COROS shows 100% recovery, but that is training load only, so trust HRV and RHR. One low night then a rebound is not a concern.
+2. Easy run discipline · Needs work
+Friday's 5.39 km averaged 6:54 per km at HR 165, 20 bpm over your 145 cap.
+Km 1 was 7:23 at HR 158, then HR stayed 164 to 168 through km 5 while pace sped up to 6:23 and 6:40 in km 3 and 4. Last 0.39 km: 6:35 at HR 170. HR climbed 12 bpm from the first km to the end, but pace also got 48 s per km faster, so this is a harder effort rather than pure drift. COROS rated it Aerobic TE 3.0, load 115, so it was a steady tempo-style run, not an easy one.
 What to do:
-- Keep today easy as planned.
-- If Monday HRV is below 27 ms, skip strength Monday and Tuesday.
-How you'll know: HRV 27 ms or above and RHR 63 bpm or lower on Monday.
+- Today, hold HR 145 or below even if pace drops to 8:00 per km or slower.
+- Start the first 5 minutes at a walk-jog so HR starts under 130.
+How you'll know: average HR 145 or below on the next 2 easy runs.
 
-4. Load · Needs work
-You did 4 strength sessions in 6 days (Oct 26, 28, 30, 31) plus 2 runs on Friday, while sleeping about 5 hours.
-Friday stacked 39 min of strength, a hard 1.49 km run and the 5.39 km run, and Saturday added 25 min more strength. That is too much stress for a Baseline phase built on easy running. COROS has nothing scheduled.
+3. Run mix · Needs work
+Friday's other run, 1.49 km, averaged 5:49 per km at HR 169 and finished at 5:34 per km, HR 182.
+That hard effort sat on the same day as the 5.39 km run and a 39 min strength session, after 6h 14m of sleep. COROS load was 28 for the short run and 115 for the long one.
 What to do:
-- Next week run Tue 40 min, Thu 40 min, Sun 50 min, all at HR 145 or lower.
-- Limit strength to 2 sessions of 30 min, on Mon and Fri.
-How you'll know: 3 runs and 2 strength sessions by Sunday 11/8, none on the same day.
+- One run per day, hard efforts out of Baseline weeks (until Nov 8).
+- Strength on a different day from the long run.
+How you'll know: no day with 2 run sessions before Nov 8.
+
+4. Recovery · Good
+HRV 27 ms is back inside the range after 22 ms Saturday, resting HR 61, and stress averaged 26 yesterday, the lowest of the week.
+COROS shows 100%, which only reflects training load, but HRV and RHR agree. One low night after a hard day plus 5h 20m sleep is common and has reversed.
+What to do:
+- Keep today easy and do no strength work.
+- Check Monday's HRV: 27 ms or above means you can run Tuesday as planned.
+How you'll know: HRV at 27 ms or above Monday and Tuesday, RHR 63 or below.
