@@ -1,5 +1,30 @@
-2026-11-01 · REST
-Sleep 4:11 · HRV 27 (avg 26) · RHR 61 (avg 62)
-Yesterday: 2,881 steps, 25 min strength
-Today: nothing scheduled. Walk or mobility only, no run.
-Sleep under 6h two nights running (5:20, 4:11): in bed by 22:00 tonight.
+2026-11-01 · Sun · EASY
+Short sleep again, so keep the Sunday long run easy and short.
+
+TODAY'S BRIEF
+You slept 4h 11m last night (REM 58m, deep 46m) and averaged 5h 17m over the last 6 nights. HRV is 27 ms, the bottom of your 27-33 range, after a Low 22 ms on Oct 31. Resting HR is fine at 61. COROS recovery says 100%, but that only tracks training load, so trust sleep and HRV. Nothing is scheduled. Run 40 min easy at HR 135-145 the whole way. Go/no-go: if HR is above 145 in the first 10 min, walk 2 min, then jog; if it stays above 145, stop and walk home.
+Tonight: lights out by 10:00 pm, phone off at 9:30 pm, alarm 6:30 am for 8h 30m in bed.
+
+NUMBERS
+Sleep 4h 11m (REM 58m) | HRV 27 ms vs 6-day avg 26 ms, normal 27-33 | RHR 61 vs 7-day avg 65 | Recovery 100%
+
+WHAT TO WORK ON
+1. Sleep · Needs work: 4h 11m last night, 5h 17m average over 6 nights
+Why: Short sleep keeps HRV at the floor of your range and slows the aerobic gains this base phase is for.
+Do: In bed by 10:00 pm all week; no caffeine after 12:00 pm; dim lights from 9:00 pm
+Know: 7h or more on 4 of 7 nights by Sun Nov 8.
+
+2. Run debrief · Needs work: Oct 30, 5.39 km at 6:54 per km, avg HR 165
+Why: That is 20 bpm over the 145 cap. HR rose from 158 in km 1 (7:23) to 168 in km 5 (6:58), about 6% drift.
+Do: Start the next run at 7:45 per km or slower; let HR set pace; walk if HR passes 145
+Know: Avg HR under 145 and drift under 5% on Wed Nov 4.
+
+3. Recovery · Needs work: HRV 27 ms, Low at 22 ms on Oct 31
+Why: A warm-up run peaking at HR 185 plus strength on Oct 30 stacked on short sleep.
+Do: Keep strength light this week; no hard efforts until HRV is 28 or higher for 2 days
+Know: HRV 28 ms or more by Wed Nov 4.
+
+4. Training rhythm · Needs work: 2 runs this week, 6.9 km total
+Why: The plan is 3 runs a week, so consistency matters more than pace now.
+Do: Wed 40 min easy; Fri 40 min easy; Sun 50 min easy
+Know: 3 runs done by Sun Nov 8.
