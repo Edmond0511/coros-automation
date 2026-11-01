@@ -1,30 +1,43 @@
 2026-11-01 · Sun · EASY
-Short sleep again, so keep the Sunday long run easy and short.
+Short night, HRV just inside normal: do a 35 minute run under HR 145 or skip it.
 
 TODAY'S BRIEF
-You slept 4h 11m last night (REM 58m, deep 46m) and averaged 5h 17m over the last 6 nights. HRV is 27 ms, the bottom of your 27-33 range, after a Low 22 ms on Oct 31. Resting HR is fine at 61. COROS recovery says 100%, but that only tracks training load, so trust sleep and HRV. Nothing is scheduled. Run 40 min easy at HR 135-145 the whole way. Go/no-go: if HR is above 145 in the first 10 min, walk 2 min, then jog; if it stays above 145, stop and walk home.
-Tonight: lights out by 10:00 pm, phone off at 9:30 pm, alarm 6:30 am for 8h 30m in bed.
+Last night you slept 4h 11m (deep 46m, REM 58m), even with the extra hour from the clocks going back, and that is your second night under 4h 30m this week after 4h 25m on Thursday. Your 7-day sleep average is 5h 6m. HRV was 27 ms, right at the bottom of your COROS normal range of 27 to 33 ms and a little above your 7-day average of 26 ms (Saturday was 22 ms, Low). Resting HR is 61 bpm against a 7-day average of 62.5, so your body is not showing strain. COROS says 100% recovered, but that only reflects training load. Sunday is your long run day, but with this little sleep a long run would cost more than it gives. Run 35 minutes easy at HR 135 to 145 (walk the first 5 minutes of any climb or if HR passes 145), at about 7:45 to 8:15 per km, and go only if you feel normal when you start; if your legs are heavy or HR sits above 150 in the first 10 minutes, walk home and call it rest. Do not do strength work today.
+Tonight: phone down at 9:15 pm, dim lights and no screens, lights out by 10:00 pm, alarm 6:30 am for 8h 30m in bed. No caffeine after 12:00 pm today.
+See a doctor if this continues.
 
 NUMBERS
-Sleep 4h 11m (REM 58m) | HRV 27 ms vs 6-day avg 26 ms, normal 27-33 | RHR 61 vs 7-day avg 65 | Recovery 100%
+Sleep 4h 11m (deep 46m, REM 58m) | HRV 27 ms vs 26 ms avg, normal range 27 to 33 | RHR 61 vs 62.5 avg (Oct 26 reading of 82 left out as an outlier) | Recovery 100%
 
 WHAT TO WORK ON
-1. Sleep · Needs work: 4h 11m last night, 5h 17m average over 6 nights
-Why: Short sleep keeps HRV at the floor of your range and slows the aerobic gains this base phase is for.
-Do: In bed by 10:00 pm all week; no caffeine after 12:00 pm; dim lights from 9:00 pm
-Know: 7h or more on 4 of 7 nights by Sun Nov 8.
+1. Sleep · Needs work
+Last night was 4h 11m and 4 of your last 8 nights were under 5h (3h 11m, 29m, 4h 25m, 4h 11m).
+Short sleep is the one thing most likely to hold back your base build, because adaptation to easy running happens while you sleep. Your 7-day average of 5h 6m is about 2h 30m under what a runner at 3 runs a week should get. Your stress is low (26 today), so this is a timing problem, not an overload problem.
+What to do:
+- Lights out by 10:00 pm tonight and every night this week, alarm 6:30 am.
+- If you are awake after 20 minutes in bed, get up, keep the lights dim, and return when sleepy.
+How you'll know: 7h or more on at least 4 of the next 7 nights, and a 7-day sleep average of 6h 30m by Sunday Nov 8.
 
-2. Run debrief · Needs work: Oct 30, 5.39 km at 6:54 per km, avg HR 165
-Why: That is 20 bpm over the 145 cap. HR rose from 158 in km 1 (7:23) to 168 in km 5 (6:58), about 6% drift.
-Do: Start the next run at 7:45 per km or slower; let HR set pace; walk if HR passes 145
-Know: Avg HR under 145 and drift under 5% on Wed Nov 4.
+2. Recovery · Needs work
+HRV was 22 ms on Saturday (Low) and only 27 ms today, the bottom edge of your 27 to 33 ms range, against a 30 ms baseline.
+HRV sat at 27 to 28 ms from Oct 27 to Oct 30 and then dropped after Friday's strength session. RHR stayed flat at 61 to 63 bpm, so this is a mild dip, not illness. Two or more low days in a row would mean backing off.
+What to do:
+- Treat tomorrow morning's HRV as the check: 28 ms or more means normal training resumes.
+- If HRV is under 25 ms or RHR is 66 bpm or higher tomorrow, replace Tuesday's run with a 30 minute walk.
+How you'll know: HRV at 29 ms or above by Wednesday Nov 4, RHR 62 bpm or lower.
 
-3. Recovery · Needs work: HRV 27 ms, Low at 22 ms on Oct 31
-Why: A warm-up run peaking at HR 185 plus strength on Oct 30 stacked on short sleep.
-Do: Keep strength light this week; no hard efforts until HRV is 28 or higher for 2 days
-Know: HRV 28 ms or more by Wed Nov 4.
+3. Easy run discipline · Needs work
+Thursday's 5.39 km run averaged HR 165, and every km was over your 145 cap (158, 166, 164, 165, 168, then 170 in the last 0.39 km).
+Heart rate climbed 12 bpm from first km to last (158 to 170, about 7.6% drift) while pace went from 7:23 for km 1 to 6:23 for km 3, so you sped up instead of holding the effort. COROS tagged it Base with Aerobic TE 3.0 and load 115, which is a moderate effort, not an easy run. Before it you ran 1.49 km at 5:49 per km with HR 169 and a max of 185, then did a 39 minute strength session. Your Oct 24 and Oct 25 runs (HR 157 and 158 at 7:28 and 7:17 per km) were much closer to easy but still over 145.
+What to do:
+- Today and all Baseline runs: HR alert at 145, walk for 30 seconds when you cross it.
+- Start the first 10 minutes at 8:15 per km or slower so HR settles under 140.
+How you'll know: average HR 145 or lower and drift under 5% on your next run, by Sunday Nov 8.
 
-4. Training rhythm · Needs work: 2 runs this week, 6.9 km total
-Why: The plan is 3 runs a week, so consistency matters more than pace now.
-Do: Wed 40 min easy; Fri 40 min easy; Sun 50 min easy
-Know: 3 runs done by Sun Nov 8.
+4. Weekly volume · Needs work
+You have run once this week (Thursday, 6.9 km total including the 1.49 km piece) after 4 run days between Oct 21 and Oct 25.
+The 3-a-week plan wants two weekday runs plus the Sunday long run. No schedule is loaded in COROS for this week, so nothing is prompting you. Today's 35 minutes gets the week to two runs.
+What to do:
+- Run today 35 minutes as above, then Wednesday 40 minutes easy (HR 135 to 145).
+- Put Sunday Nov 8 in as a 55 minute long run at HR under 145.
+How you'll know: 3 runs logged by Sunday Nov 8, all with average HR 145 or lower.
