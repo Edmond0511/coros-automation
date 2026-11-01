@@ -1,37 +1,27 @@
-2026-11-01 · Sun · EASY
-Long run day. Keep it easy: 45 minutes at heart rate 145 or below, after a short night.
+2026-11-01 · Sunday · Norwegian 4x4 Run
 
-TODAY'S BRIEF
-Last night you slept 4h 11m (46m deep, 58m REM), your third night under 5h in the past week. HRV is 27 ms, inside your 27 to 33 ms normal range but at the bottom of it and under your 30 ms baseline. Resting HR is 61 bpm, under your 7-day average of 62.5, so your body is not showing strain yet; sleep is the weak point. Every run since Oct 21 averaged 157 to 170 bpm, far above the 145 easy cap, so today is about running easy. Today: run 45 minutes at heart rate 145 or below; go if the first 10 minutes stay under 145, and if HR climbs above 145, walk until it drops under 145, then continue.
-Tonight: be in bed by 9:30 pm, lights out by 10:00 pm, no caffeine after 1:00 pm, alarm at 6:30 am. That gives 8h 30m in bed for about 7h of sleep.
+EASY: swap the 4x4 for 40 min under HR 145, short night.
 
-NUMBERS
-Sleep 4h 11m (deep 46m, REM 58m), 7-day sleep average 5h 6m | HRV 27 ms vs 7-day average 26.2 ms, normal range 27 to 33 ms, baseline 30 ms | RHR 61 bpm vs 7-day average 62.5 bpm | Recovery 100%, Fresh
-Left out: Oct 26 sleep of 29m (watch off) and Oct 26 RHR of 82 bpm (outlier).
+LAST NIGHT
+Sleep 4h 10m (deep 46m, REM 58m) · 7-day avg 4h 36m
+HRV 27 ms (normal 27 to 33) · RHR 61 bpm (7-day avg 63 bpm)
+Recovery 100% · Stress yesterday 35
 
-WHAT TO WORK ON
+COACH
+Two of the last four nights were under 5h (4h 20m on Oct 29, 4h 10m last night), and HRV is at the bottom of its normal range. Friday's 5.39 km averaged 165 bpm against an easy cap of 145, with pace swinging from 6:23 to 7:23 per km, so it was a hard run, not base. Today: 40 min easy under HR 145, no 4x4; if HR sits over 145 at minute 10, walk until it drops.
+Tonight: lights out 11:00 pm, wake 7:00 am.
 
-1. Recovery · Needs work
-Last night's 4h 11m and a 5h 6m sleep average are the biggest drag on recovery, while HRV and resting HR are still normal.
-COROS shows 100% recovered, but that number tracks training load and does not see sleep or HRV. You are not overreaching yet; the risk is short nights stacking up as you move into the Base phase in November.
-What to do:
-- Lights out by 10:00 pm tonight, up at 6:30 am, and aim for 7h or more asleep.
-- Keep strength work off today and tomorrow.
-- If you wake before 5:30 am and can't fall back asleep, stay in bed with the lights off.
-How you'll know: sleep of 6h 30m or more tonight, and HRV at 28 ms or above Monday morning.
+WEATHER
+Weather unavailable.
 
-2. Run debrief and aerobic base · Needs work
-The Oct 30 runs averaged 165 bpm (5.39 km) and 169 bpm (1.49 km), both well over the 145 cap.
-The 5.39 km opened at 7:23 per km and 158 bpm, then ran 6:23 to 7:13 per km with HR reaching 170 bpm by the end. The 1.49 km was labeled Recovery by COROS but ran at 5:49 per km with a peak of 185 bpm, so the effort did not match its purpose. Every run since Oct 21 has been tempo work, not the easy base your HR drift goal (under 5%) depends on.
-What to do:
-- Today, hold 145 bpm or lower for all 45 minutes, even if the pace falls well below the 6:54 per km of Oct 30.
-- On weekday runs, cap HR at 145 and the run at 60 minutes, and never run twice in one day.
-How you'll know: today's run averages 145 bpm or below, and the next weekday run averages under 150 bpm by Wednesday.
+FITNESS
+VO2max 48 · Threshold 5:13/km · Half prediction 1:58:26
+This week: 2 of 2 runs, 6.88 km · 3 of 4 strength · Race in 196 days
 
-3. Strength load · Needs work
-Seven strength sessions since Oct 22 are stacking on hard runs, and the only low HRV this week (22 ms, Oct 31) followed Oct 30's two runs plus a 39-minute strength session.
-Load builds fast when sleep is short, so keep the next week lighter until HRV is back at your 30 ms baseline.
-What to do:
-- No strength work today or Monday.
-- Next strength session: 30 minutes or less, on a day with no run.
-How you'll know: Monday's stress average under 35 (today it is 26).
+OCTOBER TOTAL
+Steps 116,280 since Oct 21 (avg 10,571/day) · Distance 40.29 km · Runs 6 · Strength 7
+
+FOCUS
+1. Sleep: 4h 36m 7-day average, two nights under 5h. Lights out 11:00 pm every night. Target: 6h+ asleep nightly by Nov 8.
+2. Run intensity: Friday's 5.39 km averaged 165 bpm vs the 145 cap. Keep Thursday's long run under HR 145 and walk any climb over it. Target: 40 min under HR 145, Thu Nov 5.
+3. Strength: 3 of 4 planned sessions this week, Tuesday Pull missed. Do Pull on Tue Nov 3, lighter if sleep is short. Target: 4 of 4 strength days by Fri Nov 6.
