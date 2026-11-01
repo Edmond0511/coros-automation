@@ -1,23 +1,37 @@
 2026-11-01 · Sunday · Norwegian 4x4 Run
-EASY: swap the 4x4 for 40 min easy under HR 145, short night.
+EASY: swap the 4x4 for 40 min under HR 145, short night.
 
 LAST NIGHT
-Sleep 4h 11m (deep 46m, REM 58m) · 7-day avg 5h 7m
-HRV 27 ms (normal 27 to 33) · RHR 61 bpm (7-day avg 63)
-Recovery 100% · Stress yesterday 36
+• Sleep 4h 11m (deep 46m, REM 58m)
+• 7-day sleep avg 5h 7m
+• HRV 27 ms (normal 27 to 33)
+• RHR 61 bpm (7-day avg 62.5)
+• Recovery 100%
+• Stress yesterday 36
 
 COACH
-Last night was 4h 11m, the 7-day average is 5h 7m with three nights under 5h, and HRV at 27 ms sits on the floor of its normal range and below its 30 ms baseline. Your Oct 30 5.39 km averaged 165 bpm, 20 over the 145 easy cap, so it was too hard for a base week. Today go 40 min easy: keep going if HR stays under 145 and you feel normal, walk any stretch that pushes it over 145, and stop at 40 min.
-Tonight: lights out 10:00 pm, wake 6:30 am.
+• Sleep is the limit: 4h 11m last night, 7-day average 5h 7m.
+• HRV 27 ms is 3 under the 30 ms baseline and was 22 ms on 10-31.
+• 10-30 run: 5.39 km at 6:54/km, avg HR 165, climbing from 158 to 170 by the last lap.
+• 10-30 short run: 1.49 km at 169 bpm avg, labeled Recovery but a hard effort.
+• Today: 40 min easy run, HR under 145 the whole way, no intervals.
+• Check: HR over 145 for 10 min means walk and end.
+• Tonight: lights out 10:30 pm, wake 7:00 am.
 
 FITNESS
-VO2max 48 · Threshold 5:13/km · Half prediction 1:58:26
-This week: 2 of 2 runs, 6.9 km · 4 of 4 strength · Race in 196 days
+• VO2max 48
+• Threshold 5:13/km
+• Half prediction 1:58:26
+• Race in 196 days
+• This week: 2 of 2 runs, 6.88 km
+• This week: 4 of 4 strength
 
-OCTOBER TOTAL
-Steps 116,280 (avg 10,571/day) · Runs 6 · Strength 7
+OCTOBER SO FAR
+• Steps 116,280 (avg 10,571/day, data from 10-21 only)
+• Runs 6
+• Strength 7
 
 FOCUS
-1. Sleep: 7-day avg 5h 7m with 3 nights under 5h. Lights out 10:00 pm every night this week, screens off at 9:30 pm. Target: 6h 30m avg by Fri 6 Nov.
-2. Aerobic: Oct 30 run averaged 165 bpm against a 145 cap. Keep every run under 145 and walk any breaks above it. Target: all runs under 145 avg by Thu 5 Nov.
-3. HRV: 27 ms, floor of the 27 to 33 range, baseline 30. No hard sessions until it is back in range. Target: HRV 30 ms by Wed 4 Nov.
+• Sleep: 7-day average 5h 7m, last night 4h 11m. Lights out 10:30 pm, no screens after 10 pm. Target: 7h+ a night by Fri 11-06.
+• Run intensity: 10-30 runs averaged 165 and 169 bpm against an easy cap of 145. Keep Thursday's long run under 145. Target: avg HR under 145 on Thu 11-05.
+• Recovery: HRV 27 ms, below the 30 ms baseline, 22 ms on 10-31. No hard session until HRV hits 30 twice. Target: HRV 30 by Tue 11-03.
