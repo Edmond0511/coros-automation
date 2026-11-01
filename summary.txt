@@ -1,27 +1,23 @@
 2026-11-01 · Sunday · Norwegian 4x4 Run
-
-EASY: swap the 4x4 for 40 min under HR 145, short night.
+EASY: swap the 4x4 for 40 min easy under HR 145, short night.
 
 LAST NIGHT
-Sleep 4h 10m (deep 46m, REM 58m) · 7-day avg 4h 36m
-HRV 27 ms (normal 27 to 33) · RHR 61 bpm (7-day avg 63 bpm)
-Recovery 100% · Stress yesterday 35
+Sleep 4h 11m (deep 46m, REM 58m) · 7-day avg 5h 7m
+HRV 27 ms (normal 27 to 33) · RHR 61 bpm (7-day avg 63)
+Recovery 100% · Stress yesterday 36
 
 COACH
-Two of the last four nights were under 5h (4h 20m on Oct 29, 4h 10m last night), and HRV is at the bottom of its normal range. Friday's 5.39 km averaged 165 bpm against an easy cap of 145, with pace swinging from 6:23 to 7:23 per km, so it was a hard run, not base. Today: 40 min easy under HR 145, no 4x4; if HR sits over 145 at minute 10, walk until it drops.
-Tonight: lights out 11:00 pm, wake 7:00 am.
-
-WEATHER
-Weather unavailable.
+Last night was 4h 11m, the 7-day average is 5h 7m with three nights under 5h, and HRV at 27 ms sits on the floor of its normal range and below its 30 ms baseline. Your Oct 30 5.39 km averaged 165 bpm, 20 over the 145 easy cap, so it was too hard for a base week. Today go 40 min easy: keep going if HR stays under 145 and you feel normal, walk any stretch that pushes it over 145, and stop at 40 min.
+Tonight: lights out 10:00 pm, wake 6:30 am.
 
 FITNESS
 VO2max 48 · Threshold 5:13/km · Half prediction 1:58:26
-This week: 2 of 2 runs, 6.88 km · 3 of 4 strength · Race in 196 days
+This week: 2 of 2 runs, 6.9 km · 4 of 4 strength · Race in 196 days
 
 OCTOBER TOTAL
-Steps 116,280 since Oct 21 (avg 10,571/day) · Distance 40.29 km · Runs 6 · Strength 7
+Steps 116,280 (avg 10,571/day) · Runs 6 · Strength 7
 
 FOCUS
-1. Sleep: 4h 36m 7-day average, two nights under 5h. Lights out 11:00 pm every night. Target: 6h+ asleep nightly by Nov 8.
-2. Run intensity: Friday's 5.39 km averaged 165 bpm vs the 145 cap. Keep Thursday's long run under HR 145 and walk any climb over it. Target: 40 min under HR 145, Thu Nov 5.
-3. Strength: 3 of 4 planned sessions this week, Tuesday Pull missed. Do Pull on Tue Nov 3, lighter if sleep is short. Target: 4 of 4 strength days by Fri Nov 6.
+1. Sleep: 7-day avg 5h 7m with 3 nights under 5h. Lights out 10:00 pm every night this week, screens off at 9:30 pm. Target: 6h 30m avg by Fri 6 Nov.
+2. Aerobic: Oct 30 run averaged 165 bpm against a 145 cap. Keep every run under 145 and walk any breaks above it. Target: all runs under 145 avg by Thu 5 Nov.
+3. HRV: 27 ms, floor of the 27 to 33 range, baseline 30. No hard sessions until it is back in range. Target: HRV 30 ms by Wed 4 Nov.
