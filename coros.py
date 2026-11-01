@@ -19,7 +19,7 @@ SEASON = [
      "goal": "Learn your normal HRV, resting HR and easy pace",
      "key": "Easy runs in zone 2, one strides session", "signs": "14+ days of HRV and resting HR, a race target set"},
     {"phase": "base", "name": "Base", "end": "2027-01-31",
-     "goal": "Grow easy volume and the Sunday long run",
+     "goal": "Grow easy volume and the Thursday long run",
      "key": "Long run building toward 90 min, strides weekly", "signs": "Drift under 5% on long runs, faster pace at the same easy HR"},
     {"phase": "build", "name": "Build", "end": "2027-03-28",
      "goal": "Raise threshold and VO2max",
