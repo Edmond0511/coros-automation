@@ -10,10 +10,10 @@ LAST NIGHT
 • Stress yesterday 42
 
 COACH
-• Two short nights in a row: 4h 10m, then 3h 8m. Sleep is the limit today, not training load.
-• HRV 25 ms is under its 27 to 33 normal range, so keep today light.
-• All three runs in the last 3 days averaged 165 to 169 bpm, 20 or more over the 145 cap. The 11-01 run climbed from 154 to 173 bpm across laps, too hard for a Base week.
-• Today: Push at about 60% of your usual weights, 2 sets per exercise, stop 2 reps short of failure. Finish in 30 min.
+• Two short nights: 4h 10m, then 3h 8m. Sleep is the limit today.
+• HRV 25 ms is under its 27 to 33 normal range. Keep today light.
+• Last 3 days' runs averaged 165 to 169 bpm, 20+ over the 145 cap. The 11-01 run drifted 154 to 173 bpm, too hard for Base.
+• Today: Push at 60% of usual weights, 2 sets each, stop 2 reps short of failure. 30 min.
 • Tonight: lights out 10:30 pm, wake 6:30 am.
 
 FITNESS
@@ -30,11 +30,11 @@ NOVEMBER SO FAR
 • Strength 0
 
 FOCUS
-• Sleep: 4h 10m and 3h 8m the last two nights, 7-day avg 5h 7m. Lights out by 10:30 pm every night this week. Target: 7h asleep by Thu.
-• Run intensity: 3 runs in 3 days averaged 165 to 169 bpm against a 145 cap. Keep Thursday under 145 with walk breaks. Target: avg HR 145 or under Thu.
-• HRV: 25 ms, under the 27 to 33 normal range. No hard efforts until it is back in range. Target: HRV 27 ms by Wed.
+• Sleep: 4h 10m and 3h 8m last two nights, 7-day avg 5h 7m. Lights out 10:30 pm nightly. Target: 7h asleep by Thu.
+• Run intensity: 3 runs averaged 165 to 169 bpm vs a 145 cap. Walk breaks on Thu. Target: avg HR 145 or under Thu.
+• HRV: 25 ms, below 27 to 33 normal. No hard efforts until back in range. Target: 27 ms by Wed.
 
 LAST WEEK
-• Baseline week: 3 runs, 13.47 km, no long run, sleep avg 5h 7m, HRV 27 ms with a dip to 22 on 10-31.
+• Baseline week: 3 runs, 13.47 km, no long run, sleep avg 5h 7m, HRV 27 ms with a 22 ms dip on 10-31.
 • Next: Thu 45 min easy under HR 145
 • Next: Sun 4x4 at 85 to 95% of max HR
