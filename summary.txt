@@ -1,35 +1,35 @@
-2026-11-03 · Tuesday · Pull
-EASY: Pull at lighter load, 30 min, no run today.
+2026-11-04 · Wednesday · Legs
+EASY: legs at lighter load, 40 min max, short sleep week.
 
 LAST NIGHT
-• Sleep 4h 40m asleep (deep 1h 24m, REM 40m), wake 11-02
-• 7-day sleep avg 5h 23m
-• HRV 23 ms (normal 27 to 33), Low
-• RHR 66 bpm (7-day avg 62)
+• Sleep 6h 53m (deep 1h 45m, REM 41m)
+• 7-day sleep avg 5h 33m
+• HRV 28 ms (normal 27 to 33)
+• RHR 62 bpm (7-day avg 62)
 • Recovery 100%
-• Stress yesterday 47
+• Stress yesterday 43
 
 COACH
-• Today's wake-up data has not synced, so these are the 11-02 readings. HRV 23 ms is under the 27 ms floor; it was 22 ms on 10-31 too.
-• Two short nights in a row: 4h 10m on 11-01, 4h 40m on 11-02. RHR 66 against a 62 average.
-• Sunday run: 6.59 km at 6:45/km, average 165 bpm, laps climbing from 154 to 173. Too hard for aerobic work, and no 4x4 intervals.
-• Today: Pull, lighter. 30 min: 2 to 3 sets at about half your usual load, stop 2 reps short of failure. No run.
-• Tonight: lights out 10:30 pm, wake 6:30 am.
+• Last synced night (wake Nov 3) was 6h 53m with HRV in normal range, so you can train. Last night has not synced yet.
+• Sleep is the real limit: 7-day avg 5h 33m, with 4h 25m on Oct 29 and 4h 11m on Nov 1.
+• Nov 1 run: 6.59 km at 6:45/km, 165 bpm average. That is well above the 145 easy cap, and it was steady, not the planned 4x4. HR climbed from 154 to 173 bpm across it.
+• Today: Legs at lighter load, about 40 min. Cut load to about 60% of normal and stop each set 2 reps short of failure.
+• Tonight: lights out 10:15 pm, wake 6:30 am.
 
 FITNESS
 • VO2max 49
 • Threshold 5:13/km
 • Half prediction 1:58:27
-• Race in 194 days
+• Race in 193 days
 • This week: 0 of 2 runs, 0 km
-• This week: 1 of 4 strength
+• This week: 2 of 4 strength
 
 NOVEMBER SO FAR
-• Steps 22,433 (avg 11,217/day)
+• Steps 35,208 (avg 11,736/day)
 • Runs 1
-• Strength 1
+• Strength 2
 
 FOCUS
-• Sleep: 4h 40m asleep on 11-02 with 1h 19m awake. Lights out 10:30 pm nightly. Target: 6h+ asleep by Wed 11-04, 7h+ by Fri 11-06.
-• Recovery: HRV 23 ms against a 27 to 33 normal range. No hard efforts until it returns. Target: HRV 27 ms+ by Thu 11-05.
-• Aerobic: Sunday run averaged 165 bpm; the Thursday cap is 145. Run Thursday easy and do the Sunday 4x4 as set. Target: Thu avg HR under 145.
+• Sleep: 7-day avg 5h 33m against a 7h goal. Lights out by 10:15 pm every night. Target: 6h 30m+ a night by Fri Nov 6.
+• Run intensity: Nov 1 averaged 165 bpm against a 145 cap. Run Thursday truly easy, walk any hills. Target: Thu Nov 5 average HR 145 or below.
+• Run volume: 0 of 2 runs this week. Do the Thursday easy run and the Sunday 4x4. Target: 2 runs by Sun Nov 8.
