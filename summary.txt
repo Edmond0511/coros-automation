@@ -10,9 +10,9 @@ LAST NIGHT
 • Stress yesterday 40
 
 COACH
-• Sleep is the weak point: 5h 44m average, and 4 of 7 nights were under 6h. Last night is not synced, so this read uses Nov 4.
-• HRV is back to baseline: 30 ms against a baseline of 30, up from 23 on Nov 2. Recovery is 100%, so the easy run is on.
-• Strength is on track: 3 of 4 sessions done this week (Push, Pull, Legs). Upper is left for Friday.
+• Sleep is the weak point: 5h 44m average, 4 of 7 nights under 6h. Last night not synced, so this uses Nov 4.
+• HRV at baseline: 30 ms (baseline 30), up from 23 on Nov 2. Recovery 100%, so the run is on.
+• Strength on track: 3 of 4 done this week. Upper is Friday.
 • Today: Long Easy Run, 50 min with HR at 145 or below the whole way. Keep it conversational.
 • Check: go if HR stays under 145 at the 10 min mark. If not, walk until it drops, then finish at 40 min.
 • Tonight: lights out 10:30 pm, wake 6:30 am.
@@ -32,5 +32,5 @@ NOVEMBER SO FAR
 
 FOCUS
 • Sleep: 5h 44m 7-day average, 4 of 7 nights under 6h. Lights out 10:30 pm every night. Target: 6h 30m or more asleep each night.
-• Running: 1 run in November and none this week, with the race 192 days out. Easy run today, 4x4 Sunday. Target: 2 runs by Sunday.
-• Recovery: HRV fell to 22 ms on Oct 31 and 23 on Nov 2. Check HRV Sunday morning. Under 27 ms, swap the 4x4 for 40 min easy. Target: HRV 27 ms or higher Sunday.
+• Running: 1 run in November, none this week, race in 192 days. Target: 2 runs by Sunday.
+• Recovery: HRV fell to 22 ms on Oct 31 and 23 on Nov 2. Sunday morning, under 27 ms means swap the 4x4 for 40 min easy. Target: HRV 27 ms or higher.
