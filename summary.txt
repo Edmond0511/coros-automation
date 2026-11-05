@@ -1,35 +1,36 @@
-2026-11-04 · Wednesday · Legs
-EASY: legs at lighter load, 40 min max, short sleep week.
+2026-11-05 · Thursday · Long Easy Run
+EASY: Long Easy Run, 50 min under HR 145, no pace push.
 
 LAST NIGHT
-• Sleep 6h 53m (deep 1h 45m, REM 41m)
-• 7-day sleep avg 5h 33m
-• HRV 28 ms (normal 27 to 33)
-• RHR 62 bpm (7-day avg 62)
+• Sleep 7h 9m (deep 1h 36m, REM 59m), Nov 4 night. Nov 5 not synced yet
+• 7-day sleep avg 5h 44m
+• HRV 30 ms (normal 27 to 33), Nov 4
+• RHR 63 bpm (7-day avg 63)
 • Recovery 100%
-• Stress yesterday 43
+• Stress yesterday 40
 
 COACH
-• Last synced night (wake Nov 3) was 6h 53m with HRV in normal range, so you can train. Last night has not synced yet.
-• Sleep is the real limit: 7-day avg 5h 33m, with 4h 25m on Oct 29 and 4h 11m on Nov 1.
-• Nov 1 run: 6.59 km at 6:45/km, 165 bpm average. That is well above the 145 easy cap, and it was steady, not the planned 4x4. HR climbed from 154 to 173 bpm across it.
-• Today: Legs at lighter load, about 40 min. Cut load to about 60% of normal and stop each set 2 reps short of failure.
-• Tonight: lights out 10:15 pm, wake 6:30 am.
+• Sleep is the weak point: 5h 44m average, 4 of 7 nights under 6h. Last night not synced, so this uses Nov 4.
+• HRV at baseline: 30 ms (baseline 30), up from 23 on Nov 2. Recovery 100%, so the run is on.
+• Strength on track: 3 of 4 done this week. Upper is Friday.
+• Today: Long Easy Run, 50 min with HR at 145 or below the whole way. Keep it conversational.
+• Check: go if HR stays under 145 at the 10 min mark. If not, walk until it drops, then finish at 40 min.
+• Tonight: lights out 10:30 pm, wake 6:30 am.
 
 FITNESS
 • VO2max 49
 • Threshold 5:13/km
 • Half prediction 1:58:27
-• Race in 193 days
+• Race in 192 days
 • This week: 0 of 2 runs, 0 km
-• This week: 2 of 4 strength
+• This week: 3 of 4 strength
 
 NOVEMBER SO FAR
-• Steps 35,208 (avg 11,736/day)
+• Steps 46,949 (avg 11,737/day)
 • Runs 1
-• Strength 2
+• Strength 3
 
 FOCUS
-• Sleep: 7-day avg 5h 33m against a 7h goal. Lights out by 10:15 pm every night. Target: 6h 30m+ a night by Fri Nov 6.
-• Run intensity: Nov 1 averaged 165 bpm against a 145 cap. Run Thursday truly easy, walk any hills. Target: Thu Nov 5 average HR 145 or below.
-• Run volume: 0 of 2 runs this week. Do the Thursday easy run and the Sunday 4x4. Target: 2 runs by Sun Nov 8.
+• Sleep: 5h 44m 7-day average, 4 of 7 nights under 6h. Lights out 10:30 pm every night. Target: 6h 30m or more asleep each night.
+• Running: 1 run in November, none this week, race in 192 days. Target: 2 runs by Sunday.
+• Recovery: HRV fell to 22 ms on Oct 31 and 23 on Nov 2. Sunday morning, under 27 ms means swap the 4x4 for 40 min easy. Target: HRV 27 ms or higher.
